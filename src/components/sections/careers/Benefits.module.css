@@ -1,0 +1,313 @@
+.section {
+  width: 100%;
+  padding: 60px 24px;
+
+  background-color: var(--background-primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  padding-right: 150px;
+}
+
+.header h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.header h2 span {
+  color: var(--accent-color);
+}
+
+.header p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Benefits grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+
+  width: 100%;
+}
+
+/* Benefit card */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  min-height: 250px;
+  padding: 40px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgb(202 255 51 / 4%),
+      transparent 35%
+    ),
+    var(--background-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgb(202 255 51 / 45%);
+
+  box-shadow: 0 18px 45px rgb(0 0 0 / 18%);
+
+  transform: translateY(-5px);
+}
+
+.card:active {
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+/* Card heading */
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cardHeading h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardHeading h3 {
+  color: var(--accent-color);
+}
+
+/* Glowing icon */
+
+.iconOuter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+  padding: 8px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgb(202 255 51 / 6%),
+    transparent
+  );
+
+  border-radius: 70px;
+}
+
+.iconInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  background: linear-gradient(
+    180deg,
+    rgb(202 255 51 / 14%),
+    transparent
+  );
+
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
+}
+
+.card:hover .iconInner {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.iconInner svg {
+  width: 26px;
+  height: 26px;
+
+  fill: none;
+  stroke: var(--accent-color);
+
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Description */
+
+.card > p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Light theme */
+
+:global([data-theme="light"]) .card {
+  background:
+    linear-gradient(
+      120deg,
+      rgb(157 204 25 / 7%),
+      transparent 35%
+    ),
+    var(--background-secondary);
+}
+
+:global([data-theme="light"]) .card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 18px 40px rgb(30 40 15 / 10%);
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+  .section {
+    padding: 60px 40px;
+  }
+
+  .header {
+    padding-right: 50px;
+  }
+
+  .card {
+    min-height: 275px;
+    padding: 30px;
+  }
+
+  .cardHeading {
+    align-items: flex-start;
+  }
+}
+
+/* Small tablet */
+
+@media (max-width: 750px) {
+  .section {
+    padding: 50px 24px;
+  }
+
+  .container {
+    gap: 45px;
+  }
+
+  .header {
+    padding-right: 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .section {
+    padding: 45px 16px;
+  }
+
+  .header h2 {
+    font-size: 30px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .card {
+    gap: 22px;
+    padding: 24px;
+    border-radius: 14px;
+  }
+
+  .cardHeading {
+    gap: 14px;
+  }
+
+  .iconOuter {
+    width: 60px;
+    height: 60px;
+  }
+
+  .iconInner {
+    width: 44px;
+    height: 44px;
+  }
+
+  .iconInner svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .cardHeading h3 {
+    font-size: 18px;
+  }
+
+  .card > p {
+    font-size: 14px;
+  }
+}

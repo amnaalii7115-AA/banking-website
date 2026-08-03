@@ -1,0 +1,399 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 60px 0 80px;
+
+  background-color: var(--background-primary);
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  padding-right: 250px;
+}
+
+.header h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.header h2 span {
+  color: var(--accent-color);
+}
+
+.header p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Cards container */
+
+.cardsContainer {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  padding-inline: 80px;
+}
+
+/* Large design behind cards */
+
+.backgroundDesign {
+  position: absolute;
+  top: -62px;
+  right: 6px;
+  left: 6px;
+  z-index: 0;
+
+  height: 550px;
+
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(202 255 51 / 5%) -29.45%,
+      rgb(202 255 51 / 0%) 27.86%
+    ),
+    linear-gradient(
+      267.5deg,
+      #1c1c1c 40.67%,
+      rgb(28 28 28 / 0%) 99.81%
+    ),
+    url("/images/asfalt-light.png"),
+    #1c1c1c;
+
+  background-blend-mode: normal, normal, screen, normal;
+  border-radius: 50px 50px 20px 20px;
+
+  pointer-events: none;
+}
+
+/* Grid */
+
+.grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 550px));
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* Card */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  min-height: 296px;
+  padding: 40px;
+
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(202 255 51 / 5%) -29.45%,
+      rgb(202 255 51 / 0%) 27.86%
+    ),
+    linear-gradient(
+      267.5deg,
+      #1c1c1c 40.67%,
+      rgb(28 28 28 / 0%) 99.81%
+    ),
+    url("/images/asfalt-light.png"),
+    #1c1c1c;
+
+  background-blend-mode: normal, normal, screen, normal;
+
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgb(202 255 51 / 40%);
+
+  box-shadow:
+    0 20px 45px rgb(0 0 0 / 18%),
+    inset 0 0 35px rgb(202 255 51 / 2%);
+
+  transform: translateY(-5px);
+}
+
+/* Card heading area */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 76px;
+}
+
+.cardHeader h3 {
+  flex: 1;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardHeader h3 {
+  color: var(--accent-color);
+}
+
+/* Icon */
+
+.iconOuter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 76px;
+  padding: 8px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgb(202 255 51 / 5%) 0%,
+    rgb(202 255 51 / 0%) 100%
+  );
+
+  border-radius: 70px;
+
+  transition: transform 0.3s ease;
+}
+
+.iconInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+  padding: 16px;
+
+  background: linear-gradient(
+    180deg,
+    rgb(202 255 51 / 10%) -66.22%,
+    rgb(202 255 51 / 0%) 85.46%
+  );
+
+  border-radius: 50%;
+}
+
+.iconInner svg {
+  width: 28px;
+  height: 28px;
+
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .iconOuter {
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Card paragraph */
+
+.card > p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Light theme */
+
+:global([data-theme="light"]) .backgroundDesign {
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(157 204 25 / 10%) -29.45%,
+      rgb(157 204 25 / 0%) 27.86%
+    ),
+    linear-gradient(
+      267.5deg,
+      var(--background-secondary) 40.67%,
+      rgb(255 255 255 / 0%) 99.81%
+    ),
+    url("/images/asfalt-light.png"),
+    var(--background-secondary);
+
+  background-blend-mode: normal, normal, multiply, normal;
+}
+
+:global([data-theme="light"]) .card {
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(157 204 25 / 8%) -29.45%,
+      rgb(157 204 25 / 0%) 27.86%
+    ),
+    var(--background-card);
+
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"]) .card:hover {
+  border-color: var(--accent-color);
+}
+
+/* Tablet */
+
+@media (max-width: 1320px) {
+  .section {
+    padding-inline: 40px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .section {
+    gap: 80px;
+  }
+
+  .header {
+    padding-right: 80px;
+  }
+
+  .cardsContainer {
+    padding-inline: 40px;
+  }
+
+  .card {
+    min-height: 320px;
+    padding: 32px;
+  }
+}
+
+/* Small tablet */
+
+@media (max-width: 800px) {
+  .section {
+    padding-inline: 24px;
+  }
+
+  .header {
+    padding-right: 0;
+  }
+
+  .cardsContainer {
+    padding-inline: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .backgroundDesign {
+    height: 100%;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .section {
+    gap: 55px;
+    padding: 50px 16px 70px;
+  }
+
+  .header h2 {
+    font-size: 30px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .cardsContainer {
+    padding-inline: 0;
+  }
+
+  .backgroundDesign {
+    top: -25px;
+    right: -5px;
+    left: -5px;
+
+    border-radius: 30px 30px 18px 18px;
+  }
+
+  .card {
+    gap: 18px;
+    padding: 24px;
+
+    border-radius: 16px;
+  }
+
+  .cardHeader {
+    align-items: center;
+  }
+
+  .cardHeader h3 {
+    font-size: 18px;
+  }
+
+  .card > p {
+    font-size: 14px;
+  }
+
+  .iconOuter {
+    width: 64px;
+    height: 64px;
+  }
+
+  .iconInner {
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+  }
+
+  .iconInner svg {
+    width: 26px;
+    height: 26px;
+  }
+}

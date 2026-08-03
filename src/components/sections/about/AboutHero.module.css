@@ -1,0 +1,304 @@
+.section {
+  width: 100%;
+  padding: 50px 80px 60px;
+  background-color: var(--background-primary);
+}
+
+.container {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 1279px;
+  height: 648px;
+  margin-inline: auto;
+  padding: 40px;
+
+  background-color: var(--background-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Abstract design */
+
+.pattern {
+  position: absolute;
+  top: 0;
+  right: -17px;
+  z-index: 0;
+
+  width: 334px;
+  height: 317px;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgb(202 255 51 / 70%) 1.2px,
+      transparent 1.8px
+    );
+
+  background-size: 8px 8px;
+
+  mask-image:
+    radial-gradient(
+      circle at top right,
+      #000 0%,
+      rgb(0 0 0 / 80%) 32%,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at top right,
+      #000 0%,
+      rgb(0 0 0 / 80%) 32%,
+      transparent 72%
+    );
+
+  transform: matrix(0, -1, -1, 0, 0, 0);
+  opacity: 0.7;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Left text card */
+
+.textContainer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex: 0 0 658px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  width: 658px;
+  height: 507px;
+  margin-right: -174px;
+  padding: 60px;
+
+  background-color: #1a1a1a;
+  border-radius: 20px 0 60px 20px;
+}
+
+/* Eyebrow + main heading */
+
+.headingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 538px;
+  max-width: 100%;
+  min-height: 151px;
+}
+
+.eyebrow {
+  display: block;
+  width: 100%;
+
+  color: var(--text-primary);
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.headingContainer h1 {
+  width: 100%;
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.headingContainer h1 span {
+  color: var(--accent-color);
+}
+
+/* Description */
+
+.textContainer > p {
+  width: 538px;
+  max-width: 100%;
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 150%;
+}
+
+/* Right image */
+
+.imageContainer {
+  position: relative;
+  z-index: 1;
+
+  flex: 1;
+  width: 715px;
+  height: 568px;
+
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%);
+
+  transition:
+    filter 0.4s ease,
+    transform 0.4s ease;
+}
+
+.imageContainer:hover .heroImage {
+  filter: grayscale(25%);
+  transform: scale(1.02);
+}
+
+/* Light theme */
+
+:global([data-theme="light"]) .container {
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+}
+
+:global([data-theme="light"]) .textContainer {
+  background-color: var(--background-card);
+}
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+  .section {
+    padding-inline: 40px;
+  }
+
+  .container {
+    height: auto;
+    min-height: 590px;
+    padding: 30px;
+  }
+
+  .textContainer {
+    flex-basis: 55%;
+    width: 55%;
+    height: auto;
+    min-height: 470px;
+    margin-right: -90px;
+    padding: 40px;
+  }
+
+  .headingContainer {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .headingContainer h1 {
+    font-size: 40px;
+  }
+
+  .textContainer > p {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .imageContainer {
+    width: auto;
+    height: 530px;
+  }
+}
+
+/* Small tablet */
+
+@media (max-width: 800px) {
+  .section {
+    padding: 35px 24px 50px;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    padding: 24px;
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: 440px;
+  }
+
+  .textContainer {
+    flex-basis: auto;
+
+    width: calc(100% - 32px);
+    min-height: auto;
+    height: auto;
+
+    margin: -85px 16px 0;
+    padding: 35px;
+
+    border-radius: 20px 20px 50px 20px;
+  }
+
+  .headingContainer h1 {
+    font-size: 36px;
+  }
+
+  .pattern {
+    right: -80px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .section {
+    padding: 25px 16px 40px;
+  }
+
+  .container {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .imageContainer {
+    height: 320px;
+    border-radius: 12px;
+  }
+
+  .textContainer {
+    width: calc(100% - 16px);
+    margin: -55px 8px 0;
+    padding: 25px 20px;
+    gap: 16px;
+
+    border-radius: 16px 16px 38px 16px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+  }
+
+  .headingContainer h1 {
+    font-size: 30px;
+  }
+
+  .textContainer > p {
+    font-size: 13px;
+  }
+
+  .pattern {
+    width: 230px;
+    height: 220px;
+  }
+}

@@ -1,0 +1,410 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 60px 80px;
+
+  background-color: var(--background-primary);
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.sectionHeader h2 span {
+  color: var(--accent-color);
+}
+
+.sectionHeader p {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.featuresLayout {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+
+  width: 100%;
+}
+
+/* =========================
+   CATEGORY PANEL
+========================= */
+
+.categoryPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 245px;
+  padding: 40px;
+
+  background-color: var(--background-secondary);
+  border-radius: 12px;
+}
+
+.categoryButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-height: 49px;
+  padding: 14px 20px;
+
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 82px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Green only on hover */
+
+.categoryButton:hover {
+  color: var(--accent-color);
+  background-color: rgb(202 255 51 / 4%);
+  border-color: rgb(202 255 51 / 35%);
+
+  transform: translateX(3px);
+}
+
+.categoryButton:active {
+  transform: translateX(1px);
+}
+
+.categoryButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* =========================
+   FEATURE GRID
+========================= */
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* =========================
+   FEATURE CARD
+========================= */
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  min-height: 225px;
+  padding: 40px;
+
+  background-color: var(--background-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.featureCard:hover {
+  background-color: rgb(202 255 51 / 3%);
+  border-color: rgb(202 255 51 / 30%);
+
+  box-shadow: 0 18px 45px rgb(0 0 0 / 15%);
+
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: 100%;
+}
+
+.cardHeader h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.featureCard p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* =========================
+   ARROW BUTTON
+========================= */
+
+.arrowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+  padding: 0;
+
+  flex-shrink: 0;
+
+  background-color: transparent;
+  color: var(--accent-color);
+
+  border: 0;
+  border-radius: 50%;
+
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.arrowButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  transform: translate(2px, -2px);
+}
+
+.arrowButton:active {
+  transform: translate(0, 0);
+}
+
+.arrowButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:global([data-theme="light"]) .categoryPanel,
+:global([data-theme="light"]) .featureCard {
+  background-color: var(--background-secondary);
+}
+
+:global([data-theme="light"]) .categoryButton {
+  background-color: var(--background-card);
+}
+
+:global([data-theme="light"]) .categoryButton:hover {
+  color: var(--accent-color);
+  background-color: rgb(157 204 25 / 10%);
+  border-color: var(--accent-color);
+}
+
+:global([data-theme="light"]) .featureCard:hover {
+  background-color: rgb(157 204 25 / 8%);
+  border-color: var(--accent-color);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .features {
+    padding: 60px 40px;
+  }
+
+  .featuresLayout {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .categoryPanel {
+    width: 210px;
+    padding: 25px;
+  }
+
+  .featureCard {
+    min-height: 250px;
+    padding: 30px;
+  }
+}
+
+/* =========================
+   SMALL TABLET
+========================= */
+
+@media (max-width: 850px) {
+  .features {
+    padding: 60px 24px;
+  }
+
+  .featuresLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryPanel {
+    flex-direction: row;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px;
+
+    overflow-x: auto;
+  }
+
+  .categoryButton {
+    width: auto;
+    min-width: max-content;
+  }
+
+  .categoryButton:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .features {
+    gap: 40px;
+    padding: 50px 16px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 30px;
+  }
+
+  .sectionHeader p {
+    font-size: 14px;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    min-height: auto;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .cardHeader h3 {
+    font-size: 18px;
+  }
+
+  .featureCard p {
+    font-size: 14px;
+  }
+
+  .arrowButton {
+    width: 32px;
+    height: 32px;
+
+    font-size: 29px;
+  }
+}
+/* =========================
+   MOBILE HEADER ALIGNMENT
+========================= */
+
+@media (max-width: 600px) {
+  .sectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .sectionHeader h2 {
+    width: 100%;
+    margin: 0;
+
+    font-size: 28px;
+    line-height: 42px;
+    text-align: center;
+  }
+
+  .sectionHeader p {
+    width: 100%;
+    max-width: 358px;
+    margin: 0 auto;
+
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+  }
+}

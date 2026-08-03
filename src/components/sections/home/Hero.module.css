@@ -1,0 +1,1094 @@
+.hero {
+  position: relative;
+
+  width: 100%;
+  max-width: 1440px;
+  min-height: 621.27px;
+  margin-inline: auto;
+  padding: 60px 200px 60px 80px;
+
+  background-color: var(--background-primary);
+  overflow: visible;
+}
+
+.heroInner {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: minmax(0, 649.81px) 410.19px;
+  align-items: center;
+  gap: 100px;
+
+  width: 100%;
+  min-height: 501.27px;
+}
+
+/* =========================
+   LEFT HERO CONTENT
+========================= */
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 649.81px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  min-height: 34px;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+
+  background-color: var(--background-card);
+  color: var(--text-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 61px;
+
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.checkIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 17px;
+  height: 17px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 50%;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.75px;
+}
+
+.title span,
+.title > strong {
+  display: block;
+}
+
+.title span .highlight {
+  display: inline;
+}
+
+.highlight {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.description {
+  width: 100%;
+  max-width: 649.81px;
+  margin-top: 14px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.openAccountButton {
+  min-width: 125px;
+  min-height: 49px;
+  margin-top: 35px;
+  padding: 12px 22px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border: 1px solid transparent;
+  border-radius: 82px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.openAccountButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgb(202 255 51 / 20%);
+}
+
+.openAccountButton:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   BANKING AREA
+========================= */
+
+.bankingArea {
+  position: relative;
+
+  width: 410.19px;
+  height: 501.27px;
+}
+
+/* Arrows */
+
+.arrows {
+  position: absolute;
+  top: -6px;
+  right: -175px;
+  z-index: 0;
+
+  display: block;
+
+  width: 300px;
+  height: 275px;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =========================
+   MONTHLY INCOME
+========================= */
+
+.income {
+  position: absolute;
+  top: -31px;
+  left: -55px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 6.89px;
+
+  width: 149.78px;
+  height: 60.73px;
+  padding: 11.02px 13.77px;
+
+  background-color: var(--income-background);
+  border: 0.69px solid var(--border-color);
+  border-radius: 8.26px;
+
+  box-shadow: 0 14px 35px rgb(0 0 0 / 18%);
+}
+
+.incomeIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 50%;
+
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.incomeText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.incomeText strong {
+  color: var(--text-primary);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.incomeText span {
+  color: var(--text-secondary);
+
+  font-size: 8px;
+  font-weight: 300;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   MAIN BANKING CARD
+========================= */
+
+.bankingCard {
+  position: relative;
+  z-index: 2;
+
+  width: 410.19px;
+  height: 501.27px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgb(26 26 26 / 0%),
+      var(--background-secondary)
+    ),
+    var(--background-secondary);
+
+  border: 0.69px solid var(--border-color);
+  border-radius: 8.26px;
+
+  box-shadow: 0 30px 80px rgb(0 0 0 / 16%);
+
+  overflow: hidden;
+}
+
+.cardTexture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("/images/asfalt-light.png");
+  background-repeat: repeat;
+  background-position: top left;
+
+  opacity: 0.08;
+  mix-blend-mode: screen;
+
+  pointer-events: none;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 20.66px;
+
+  padding: 27.55px;
+}
+
+/* =========================
+   TRANSACTION SECTION
+========================= */
+
+.transactionsSection {
+  display: flex;
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 182.32px;
+
+  flex-direction: column;
+  gap: 13.77px;
+}
+
+.cardHeading {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20.66px;
+}
+
+.transactions {
+  position: relative;
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 147.55px;
+}
+
+.transaction {
+  position: relative;
+  z-index: 3;
+
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6.89px;
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 62.04px;
+  padding: 11.02px 16.53px;
+
+  background-color: var(--background-card);
+
+  border: 0.69px solid var(--border-color);
+  border-radius: 8.26px;
+}
+
+.transactionSecond {
+  z-index: 2;
+
+  width: 327.55px;
+  max-width: calc(100% - 27.55px);
+  height: 62.04px;
+
+  margin-top: -19px;
+  margin-inline: auto;
+
+  opacity: 0.65;
+}
+
+.transactionThird {
+  z-index: 1;
+
+  width: 300px;
+  max-width: calc(100% - 55.1px);
+  height: 62.04px;
+
+  margin-top: -19px;
+  margin-inline: auto;
+
+  opacity: 0.35;
+}
+
+.transactionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 50%;
+
+  font-size: 17px;
+}
+
+.transactionText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.transactionText span {
+  color: var(--text-secondary);
+
+  font-size: 8px;
+  font-weight: 300;
+}
+
+.transactionText strong {
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transactionAmount {
+  color: var(--text-primary);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+/* =========================
+   MONEY EXCHANGE SECTION
+========================= */
+
+.exchangeSection {
+  display: flex;
+  width: 355.1px;
+  max-width: 100%;
+  height: 244.24px;
+  flex-direction: column;
+  gap: 20.66px;
+}
+
+.exchangeSection .cardHeading {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: inherit;
+  font-size: 13.77px;
+  font-weight: 500;
+  line-height: 20.66px;
+  letter-spacing: 0;
+}
+
+/* Currency outer box */
+
+.exchangeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 177.55px);
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 141.22px;
+
+  background-color: var(--background-card);
+
+  border: 0.69px solid var(--border-color);
+  border-radius: 8.26px;
+
+  overflow: hidden;
+}
+
+/* Individual currency column */
+
+.currency {
+  display: grid;
+  grid-template-rows: 78.9px 62.32px;
+
+  width: 177.55px;
+  min-width: 0;
+  height: 141.22px;
+
+  background-color: var(--background-card);
+}
+
+.currency:first-child {
+  border-right: 0.69px solid var(--border-color);
+}
+
+/* Upper information area */
+
+.currencyInformation {
+  display: flex;
+
+  width: 177.55px;
+  height: 78.9px;
+
+  flex-direction: column;
+  justify-content: center;
+  gap: 6.89px;
+
+  padding: 13.77px;
+}
+
+/* Flag and currency-name row */
+
+.currencyHeading {
+  display: flex;
+  align-items: center;
+  gap: 6.89px;
+
+  width: 100%;
+  min-height: 27.47px;
+}
+
+.currencyHeading strong {
+  display: block;
+
+  width: 115.49px;
+  max-width: calc(100% - 34.51px);
+  height: 19px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 400;
+  line-height: 18.6px;
+  letter-spacing: 0;
+
+  white-space: nowrap;
+}
+
+/* Country name */
+
+.country {
+  display: block;
+
+  width: 150px;
+  max-width: 100%;
+  height: 17px;
+
+  overflow: hidden;
+
+  color: #e4e4e7;
+
+  font-family: inherit;
+  font-size: 11.02px;
+  font-weight: 300;
+  line-height: 16.53px;
+  letter-spacing: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Currency amounts */
+
+.currencyAmount {
+  display: flex;
+  align-items: center;
+  gap: 6.89px;
+
+  width: 177.55px;
+  height: 62.32px;
+  padding: 20.66px 13.77px;
+
+  color: #ffffff;
+
+  border-top: 0.69px solid var(--border-color);
+
+  font-family: inherit;
+  font-size: 13.77px;
+  font-weight: 500;
+  line-height: 20.66px;
+  letter-spacing: 0;
+}
+
+/* =========================
+   FLAGS
+========================= */
+
+.flag {
+  position: relative;
+
+  display: block;
+  flex: 0 0 auto;
+
+  width: 27.62px;
+  height: 27.47px;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* India flag */
+
+.indiaFlag {
+  background:
+    linear-gradient(
+      to bottom,
+      #ff9933 0%,
+      #ff9933 33.33%,
+      #ffffff 33.33%,
+      #ffffff 66.66%,
+      #138808 66.66%,
+      #138808 100%
+    );
+}
+
+.indiaFlag::after {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 6px;
+  height: 6px;
+
+  border: 1px solid #000080;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+/* USA flag */
+
+.usaFlag {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #b22234 0,
+      #b22234 2.5px,
+      #ffffff 2.5px,
+      #ffffff 5px
+    );
+}
+
+.usaFlag::after {
+  content: "✦";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 13px;
+  height: 14px;
+
+  background-color: #3c3b6e;
+  color: #ffffff;
+
+  font-size: 6px;
+}
+
+/* =========================
+   EXCHANGE BUTTON
+========================= */
+
+.exchangeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6.89px;
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 41.04px;
+  min-height: 41.04px;
+
+  padding: 11.02px 20.66px;
+
+  background-color: #22251b;
+  color: var(--accent-color);
+
+  border: none;
+  border-radius: 56.47px;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 400;
+  line-height: 18.6px;
+  letter-spacing: 0;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.exchangeButton:hover {
+  background-color: rgb(202 255 51 / 13%);
+  box-shadow: inset 0 0 0 0.69px var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.exchangeButton:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:global([data-theme="light"]) .currencyHeading strong,
+:global([data-theme="light"]) .currencyAmount {
+  color: var(--text-primary);
+}
+
+:global([data-theme="light"]) .country {
+  color: var(--text-secondary);
+}
+
+:global([data-theme="light"]) .exchangeButton {
+  background-color: var(--income-background);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+  .exchangeSection,
+  .exchangeGrid,
+  .exchangeButton {
+    width: 100%;
+  }
+
+  .exchangeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .currency,
+  .currencyInformation,
+  .currencyAmount {
+    width: 100%;
+  }
+
+  .currencyHeading strong {
+    width: auto;
+  }
+}
+
+/* =========================
+   EXCHANGE BUTTON
+========================= */
+
+.exchangeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6.89px;
+
+  width: 355.1px;
+  max-width: 100%;
+  height: 41.04px;
+
+  padding: 11.02px 20.66px;
+
+  background-color: var(--income-background);
+  color: var(--accent-color);
+
+  border: none;
+  border-radius: 56.47px;
+
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.exchangeButton:hover {
+  background-color: rgb(202 255 51 / 13%);
+
+  box-shadow: inset 0 0 0 0.69px var(--accent-color);
+
+  transform: translateY(-1px);
+}
+
+.exchangeButton:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   SUPPORTED CURRENCY BOX
+========================= */
+
+.supportedCurrencies {
+  position: absolute;
+  right: -37px;
+  bottom: -68.79px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 294.87px;
+  height: 55.02px;
+
+  padding:
+    6.89px
+    6.89px
+    6.89px
+    16.53px;
+
+  background-color: #22251b;
+
+  border: 0.69px solid var(--border-color);
+  border-radius: 55.09px;
+
+  box-shadow: 0 14px 35px rgb(0 0 0 / 17%);
+}
+
+.supportedLabel {
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11.02px;
+  font-weight: 400;
+  line-height: 16.53px;
+
+  white-space: nowrap;
+}
+
+/* Black rounded box behind icons */
+
+.currencyIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5.51px;
+
+  width: 140.79px;
+  height: 41.24px;
+
+  padding: 6.89px;
+
+  background-color: #1a1a1a;
+
+  border: 0.69px solid #262626;
+  border-radius: 37.88px;
+}
+
+/* Individual currency icons */
+
+.currencyIcons span {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  width: 27.62px;
+  height: 27.47px;
+
+  background-color: #1c1c1c;
+  color: var(--accent-color);
+
+  border-radius: 50%;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Light theme */
+
+:global([data-theme="light"]) .supportedCurrencies {
+  background-color: var(--income-background);
+}
+
+:global([data-theme="light"]) .supportedLabel {
+  color: var(--text-primary);
+}
+
+:global([data-theme="light"]) .currencyIcons {
+  background-color: var(--background-secondary);
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"]) .currencyIcons span {
+  background-color: var(--background-card);
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .supportedCurrencies {
+    right: 8px;
+    bottom: -68.79px;
+
+    width: 294.87px;
+    max-width: calc(100% - 16px);
+  }
+
+  .currencyIcons {
+    width: 140.79px;
+  }
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:global([data-theme="light"]) .cardTexture {
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+
+:global([data-theme="light"]) .bankingCard {
+  box-shadow: 0 30px 70px rgb(25 25 25 / 9%);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1300px) {
+  .hero {
+    padding-right: 100px;
+    padding-left: 60px;
+  }
+
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) 410.19px;
+    gap: 70px;
+  }
+
+  .arrows {
+    right: -90px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    min-height: auto;
+    padding: 70px 40px 130px;
+  }
+
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) 410.19px;
+    gap: 45px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .income {
+    left: -20px;
+  }
+
+  .supportedCurrencies {
+    right: -20px;
+  }
+
+  .arrows {
+    right: -35px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 65px 24px 140px;
+  }
+
+  .heroInner {
+    display: flex;
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .heroContent {
+    max-width: 650px;
+    text-align: center;
+  }
+
+  .description {
+    margin-inline: auto;
+  }
+
+  .bankingArea {
+    width: 410.19px;
+    max-width: 100%;
+  }
+
+  .arrows {
+    top: -35px;
+    right: -50px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding: 55px 16px 125px;
+  }
+
+  .heroInner {
+    gap: 85px;
+  }
+
+  .badge {
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 1.28;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .bankingArea {
+    width: 100%;
+    height: auto;
+  }
+
+  .bankingCard {
+    width: 100%;
+    height: auto;
+    min-height: 501.27px;
+  }
+
+  .cardContent {
+    padding: 20px;
+  }
+
+  .transactionsSection,
+  .transactions,
+  .transaction,
+  .exchangeSection,
+  .exchangeGrid,
+  .exchangeButton {
+    width: 100%;
+  }
+
+  .exchangeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .currency,
+  .currencyInformation,
+  .currencyAmount {
+    width: 100%;
+  }
+
+  .income {
+    top: -31px;
+    left: 8px;
+  }
+
+  .supportedCurrencies {
+    right: 8px;
+    bottom: -70px;
+
+    width: auto;
+    max-width: calc(100% - 16px);
+  }
+
+  .supportedLabel {
+    font-size: 9px;
+  }
+
+  .currencyIcons span {
+    width: 31px;
+    height: 31px;
+  }
+
+  .arrows {
+    top: -25px;
+    right: -15px;
+
+    width: 220px;
+    height: auto;
+  }
+}

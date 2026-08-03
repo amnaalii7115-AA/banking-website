@@ -1,0 +1,39 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logoText {
+  color: var(--text-primary);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.7px;
+}
+
+.logo:focus-visible {
+  border-radius: 6px;
+  outline: 2px solid var(--accent-color);
+  outline-offset: 5px;
+}
+
+@media (max-width: 768px) {
+  .logoIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,337 @@
+.wrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 440px;
+
+  margin-left: auto;
+}
+
+.card {
+  position: relative;
+
+  padding: 28px;
+
+  background:
+    linear-gradient(
+      140deg,
+      rgb(202 255 51 / 5%),
+      transparent 42%
+    ),
+    var(--background-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.income {
+  position: absolute;
+  top: -47px;
+  left: -48px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-width: 165px;
+  padding: 10px 13px;
+
+  background-color: #22251b;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.incomeIcon {
+  display: grid;
+  place-items: center;
+
+  width: 31px;
+  height: 31px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 50%;
+
+  font-size: 17px;
+}
+
+.incomeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.incomeContent strong {
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.incomeContent span {
+  color: var(--text-secondary);
+  font-size: 9px;
+}
+
+.cardHeading,
+.exchangeHeading {
+  color: var(--text-primary);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cardHeading {
+  margin-bottom: 13px;
+}
+
+.transactions {
+  position: relative;
+}
+
+.transaction {
+  position: relative;
+  z-index: 3;
+
+  display: grid;
+  grid-template-columns: 35px 1fr auto;
+  align-items: center;
+  gap: 9px;
+
+  min-height: 58px;
+  padding: 10px 13px;
+
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.secondTransaction {
+  z-index: 2;
+
+  margin-top: -9px;
+
+  opacity: 0.65;
+  transform: scale(0.96);
+}
+
+.thirdTransaction {
+  z-index: 1;
+
+  margin-top: -9px;
+
+  opacity: 0.35;
+  transform: scale(0.92);
+}
+
+.transactionIcon {
+  display: grid;
+  place-items: center;
+
+  width: 31px;
+  height: 31px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 50%;
+
+  font-size: 15px;
+}
+
+.transactionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.transactionContent span {
+  color: var(--text-secondary);
+  font-size: 9px;
+}
+
+.transactionContent strong {
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.transactionAmount {
+  color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.exchangeHeading {
+  margin-top: 21px;
+  margin-bottom: 12px;
+}
+
+.exchangeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+.currencyCard {
+  min-height: 104px;
+  padding: 13px;
+}
+
+.currencyCard:first-child {
+  border-right: 1px solid var(--border-color);
+}
+
+.currencyName {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.currencyName strong {
+  color: var(--text-primary);
+
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.flag {
+  font-size: 17px;
+}
+
+.countryName {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--text-secondary);
+  font-size: 8px;
+}
+
+.exchangeAmount {
+  display: block;
+
+  margin-top: 20px;
+
+  color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.exchangeButton {
+  width: 100%;
+  min-height: 37px;
+
+  margin-top: 13px;
+
+  background-color: rgb(202 255 51 / 6%);
+  color: var(--accent-color);
+
+  border: 1px solid transparent;
+  border-radius: 82px;
+
+  font-size: 10px;
+
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.exchangeButton:hover {
+  background-color: rgb(202 255 51 / 12%);
+  border-color: var(--accent-color);
+}
+
+.response {
+  position: absolute;
+  right: 20px;
+  bottom: -45px;
+  z-index: 20;
+
+  padding: 9px 14px;
+
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-radius: 30px;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
+}
+
+.supported {
+  position: absolute;
+  right: -22px;
+  bottom: -55px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 9px 8px 14px;
+
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 82px;
+}
+
+.supportedLabel {
+  margin-right: 3px;
+
+  color: var(--text-secondary);
+
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.currencyIcon {
+  display: grid;
+  place-items: center;
+
+  width: 25px;
+  height: 25px;
+
+  background-color: var(--background-secondary);
+  color: var(--accent-color);
+
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+
+  font-size: 10px;
+}
+
+@media (max-width: 1100px) {
+  .income {
+    left: -15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    max-width: calc(100% - 20px);
+    margin-inline: auto;
+  }
+
+  .card {
+    padding: 19px;
+  }
+
+  .income {
+    top: -50px;
+    left: -8px;
+  }
+
+  .supported {
+    right: -8px;
+  }
+}

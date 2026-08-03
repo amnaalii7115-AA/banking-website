@@ -1,0 +1,402 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 60px 80px;
+
+  background-color: var(--background-primary);
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 1280px;
+  padding-right: 250px;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+
+  color: var(--accent-color);
+
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.sectionHeader p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 1280px;
+}
+
+/* =========================
+   MISSION / VISION ROW
+========================= */
+
+.row {
+  display: grid;
+  grid-template-columns: 545px minmax(0, 735px);
+  align-items: center;
+
+  width: 100%;
+  min-height: 500px;
+}
+
+.reverseRow {
+  grid-template-columns: minmax(0, 735px) 545px;
+}
+
+.reverseRow .textContainer {
+  order: 1;
+
+  padding: 0 40px 0 0;
+
+  border-right: 1px solid var(--accent-color);
+  border-left: none;
+}
+
+.reverseRow .imageContainer {
+  order: 2;
+}
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+
+.imageContainer {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 545px;
+  height: 500px;
+  padding: 60px 60px 0;
+
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(202 255 51 / 5%) -29.45%,
+      rgb(202 255 51 / 0%) 27.86%
+    ),
+    linear-gradient(
+      267.5deg,
+      var(--background-secondary) 40.67%,
+      transparent 99.81%
+    ),
+    var(--background-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 50px 50px 20px 20px;
+
+  overflow: hidden;
+}
+
+/* Green dotted/radial decoration */
+
+.pattern {
+  position: absolute;
+  z-index: 0;
+  top: -14px;
+  left: 13px;
+
+  width: 526px;
+  height: 500px;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 45% 50%,
+      rgb(202 255 51 / 18%) 0,
+      rgb(202 255 51 / 8%) 20%,
+      transparent 58%
+    ),
+    radial-gradient(
+      circle,
+      rgb(202 255 51 / 25%) 1px,
+      transparent 1.5px
+    );
+
+  background-position:
+    center,
+    center;
+  background-size:
+    100% 100%,
+    8px 8px;
+
+  opacity: 0.48;
+  transform: rotate(-90deg);
+}
+
+/* Actual image */
+
+.imageWrapper {
+  position: relative;
+  z-index: 1;
+
+  width: 425px;
+  height: 440px;
+
+  border-radius: 50px 50px 0 0;
+
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+
+  filter: grayscale(1);
+  transition:
+    filter 0.35s ease,
+    transform 0.35s ease;
+}
+
+.imageContainer:hover .image {
+  filter: grayscale(0.7);
+  transform: scale(1.025);
+}
+
+/* =========================
+   TEXT CONTAINER
+========================= */
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  padding-left: 40px;
+
+  border-left: 1px solid var(--accent-color);
+}
+
+.textContainer h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.textContainer p {
+  max-width: 695px;
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:global([data-theme="light"]) .imageContainer {
+  background:
+    linear-gradient(
+      106.06deg,
+      rgb(157 204 25 / 10%) -29.45%,
+      rgb(157 204 25 / 0%) 27.86%
+    ),
+    linear-gradient(
+      267.5deg,
+      var(--background-secondary) 40.67%,
+      transparent 99.81%
+    ),
+    var(--background-secondary);
+}
+
+:global([data-theme="light"]) .pattern {
+  opacity: 0.25;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .section {
+    padding: 60px 40px;
+  }
+
+  .sectionHeader {
+    padding-right: 100px;
+  }
+
+  .row,
+  .reverseRow {
+    grid-template-columns: minmax(360px, 45%) minmax(0, 55%);
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: 450px;
+    padding: 50px 40px 0;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 400px;
+  }
+
+  .pattern {
+    width: 100%;
+    height: 450px;
+  }
+
+  .textContainer,
+  .reverseRow .textContainer {
+    padding-inline: 32px;
+  }
+}
+
+/* =========================
+   SMALL TABLET
+========================= */
+
+@media (max-width: 800px) {
+  .section {
+    gap: 45px;
+    padding: 50px 24px;
+  }
+
+  .sectionHeader {
+    padding-right: 0;
+  }
+
+  .row,
+  .reverseRow {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+    min-height: auto;
+  }
+
+  .reverseRow .imageContainer {
+    order: 1;
+  }
+
+  .reverseRow .textContainer {
+    order: 2;
+  }
+
+  .imageContainer {
+    width: 100%;
+    max-width: 545px;
+    height: 500px;
+    margin-inline: auto;
+    padding: 60px 60px 0;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 440px;
+  }
+
+  .textContainer,
+  .reverseRow .textContainer {
+    padding: 0 0 0 24px;
+
+    border-right: none;
+    border-left: 1px solid var(--accent-color);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .section {
+    gap: 40px;
+    padding: 45px 16px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 30px;
+  }
+
+  .sectionHeader p {
+    font-size: 14px;
+  }
+
+  .content {
+    gap: 50px;
+  }
+
+  .imageContainer {
+    height: 390px;
+    padding: 35px 24px 0;
+
+    border-radius: 30px 30px 16px 16px;
+  }
+
+  .imageWrapper {
+    height: 355px;
+
+    border-radius: 30px 30px 0 0;
+  }
+
+  .pattern {
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 390px;
+  }
+
+  .textContainer,
+  .reverseRow .textContainer {
+    padding-left: 20px;
+  }
+
+  .textContainer h3 {
+    font-size: 26px;
+  }
+
+  .textContainer p {
+    font-size: 14px;
+  }
+}
