@@ -1,5 +1,4 @@
 /* Dark theme colours */
-
 :root {
   --background-primary: #191919;
   --background-secondary: #1c1c1c;
@@ -16,7 +15,6 @@
 }
 
 /* Light theme colours */
-
 [data-theme="light"] {
   --background-primary: #f7f8f3;
   --background-secondary: #ffffff;
@@ -33,7 +31,6 @@
 }
 
 /* Basic reset */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,15 +38,18 @@
 }
 
 html {
+  width: 100%;
   min-width: 320px;
   scroll-behavior: smooth;
-  background-color: var(--background-primary);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
+  max-width: 100%;
 
   background-color: var(--background-primary);
   color: var(--text-primary);
@@ -57,31 +57,74 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.45s ease,
+    color 0.45s ease;
+  overflow-x: hidden;
 }
 
-/* Smooth theme transition */
+main {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
 
-body,
-header,
-nav,
 main,
 section,
+header,
 footer,
+nav,
 article,
-aside,
-div,
-a,
+aside {
+  min-width: 0;
+  max-width: 100%;
+}
+
 button,
 input,
 textarea,
 select {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+span {
+  overflow-wrap: break-word;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  main,
+  section {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+:where(section, header, footer, nav, article, div, button, a, input, textarea) {
+  transition-property:
+    background-color,
+    border-color,
+    color,
+    box-shadow,
+    fill,
+    stroke;
+  transition-duration: 0.45s;
+  transition-timing-function: ease;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 a {
@@ -91,8 +134,7 @@ a {
 
 button,
 input,
-textarea,
-select {
+textarea {
   font: inherit;
 }
 
@@ -100,54 +142,17 @@ button {
   cursor: pointer;
 }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-button,
-a,
-input,
-textarea,
-select {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Accessible keyboard focus */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 3px;
-}
-
-/* Reduce animations when requested by the device */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  body,
-  header,
-  nav,
-  main,
-  section,
-  footer,
-  article,
-  aside,
-  div,
-  a,
-  button,
-  input,
-  textarea,
-  select {
-    transition-duration: 0.01ms !important;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

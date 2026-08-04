@@ -201,15 +201,22 @@
 .cardsContainer {
   position: relative;
 
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 60px;
-
   width: 100%;
   min-width: 0;
   min-height: 292px;
 
   overflow: hidden;
+}
+
+.cardsTrack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 60px;
+
+  width: 100%;
+  min-height: 292px;
+
+  will-change: opacity, transform;
 }
 
 .card {
@@ -223,6 +230,72 @@
 
   min-width: 0;
   min-height: 292px;
+
+}
+
+.centerCard {
+  border-radius: 18px;
+  background: radial-gradient(
+    circle at 50% 25%,
+    rgb(202 255 51 / 5%),
+    transparent 62%
+  );
+}
+
+.exitToLeft {
+  animation: exitToLeft 0.22s ease both;
+}
+
+.exitToRight {
+  animation: exitToRight 0.22s ease both;
+}
+
+.enterFromRight {
+  animation: enterFromRight 0.48s cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.enterFromLeft {
+  animation: enterFromLeft 0.48s cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+@keyframes exitToLeft {
+  to {
+    opacity: 0;
+    transform: translateX(-32px) scale(0.98);
+  }
+}
+
+@keyframes exitToRight {
+  to {
+    opacity: 0;
+    transform: translateX(32px) scale(0.98);
+  }
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(42px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-42px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
 .quoteRow {
@@ -281,14 +354,44 @@
 }
 
 .customerName {
-  width: 100%;
-
   color: var(--accent-color);
 
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  text-align: center;
+}
+
+.customerIdentity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(
+    145deg,
+    rgb(202 255 51 / 22%),
+    rgb(202 255 51 / 5%)
+  );
+  color: var(--accent-color);
+
+  border: 1px solid rgb(202 255 51 / 30%);
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 600;
 }
 
 /* Side fades */
@@ -349,6 +452,10 @@
   }
 
   .cardsContainer {
+    min-height: 292px;
+  }
+
+  .cardsTrack {
     gap: 30px;
   }
 
@@ -379,6 +486,10 @@
   }
 
   .cardsContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cardsTrack {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -492,6 +603,12 @@
     overflow: visible;
   }
 
+  .cardsTrack {
+    display: block;
+
+    min-height: 270px;
+  }
+
   .card {
     display: none;
   }
@@ -544,5 +661,14 @@
 
   .arrowButton:last-child {
     right: calc(50% - 62px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exitToLeft,
+  .exitToRight,
+  .enterFromRight,
+  .enterFromLeft {
+    animation-duration: 0.01ms;
   }
 }

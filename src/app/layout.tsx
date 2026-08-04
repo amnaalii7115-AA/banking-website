@@ -10,6 +10,10 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+
   title: {
     default: "YourBank | Digital Banking Solutions",
     template: "%s | YourBank",
@@ -39,30 +43,64 @@ export const metadata: Metadata = {
   publisher: "YourBank",
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/icon.png",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+
     shortcut: "/favicon.ico",
-    apple: "/images/icon.png",
+
+    apple: [
+      {
+        url: "/apple-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
   },
 
   openGraph: {
     title: "YourBank | Digital Banking Solutions",
+
     description:
       "Secure and personalized banking solutions for individuals and businesses.",
+
     type: "website",
     siteName: "YourBank",
+
+    images: [
+      {
+        url: "/icon.png",
+        width: 512,
+        height: 512,
+        alt: "YourBank logo",
+      },
+    ],
   },
 
   twitter: {
     card: "summary",
+
     title: "YourBank | Digital Banking Solutions",
+
     description:
       "Secure and personalized banking solutions for individuals and businesses.",
+
+    images: ["/icon.png"],
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+
   themeColor: [
     {
       media: "(prefers-color-scheme: dark)",
@@ -83,8 +121,14 @@ export default function RootLayout({
   children,
 }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={lexend.className}>{children}</body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
+      <body className={lexend.className}>
+        {children}
+      </body>
     </html>
   );
 }

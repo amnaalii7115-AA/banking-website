@@ -553,6 +553,9 @@
   }
 
   .signUpContainer {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     gap: 40px;
     padding: 55px 20px 45px;
   }
@@ -587,6 +590,8 @@
   }
 
   .fieldsContainer {
+    width: 100%;
+    min-width: 0;
     grid-template-columns: 1fr;
     gap: 16px;
   }
@@ -597,6 +602,8 @@
   }
 
   .actions {
+    width: 100%;
+    max-width: 404px;
     gap: 18px;
   }
 

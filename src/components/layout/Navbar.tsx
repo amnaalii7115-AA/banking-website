@@ -89,7 +89,6 @@ export default function Navbar() {
               isMenuOpen ? styles.navigationOpen : ""
             }`}
             aria-label="Main navigation"
-            aria-hidden={!isMenuOpen ? undefined : false}
           >
             <div className={styles.mobileMenuHeader}>
               <span>Menu</span>

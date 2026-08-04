@@ -382,7 +382,6 @@
     min-height: auto;
   }
 }
-
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -390,27 +389,59 @@
     padding: 45px 16px;
   }
 
+  .header {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 0;
+
+    text-align: center;
+  }
+
   .header h2 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 30px;
+    text-align: center;
   }
 
   .header p {
+    width: 100%;
+    max-width: 358px;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 
   .jobCard {
+    align-items: flex-start;
     gap: 30px;
+
     padding: 24px;
 
     border-radius: 12px;
+    text-align: left;
   }
 
   .cardContent {
     gap: 30px;
+
+    width: 100%;
+  }
+
+  .jobHeader {
+    align-items: flex-start;
+
+    width: 100%;
+
+    text-align: left;
   }
 
   .jobHeader h3 {
     font-size: 20px;
+    text-align: left;
   }
 
   .tags {
@@ -422,13 +453,19 @@
     font-size: 12px;
   }
 
+  .jobSection {
+    text-align: left;
+  }
+
   .jobSection h4 {
     font-size: 17px;
+    text-align: left;
   }
 
   .jobSection p,
   .requirements li {
     font-size: 13px;
+    text-align: left;
   }
 
   .applyButton {
@@ -436,8 +473,9 @@
   }
 
   .response {
-    width: calc(100% - 32px);
     justify-content: center;
+
+    width: calc(100% - 32px);
 
     border-radius: 14px;
 

@@ -312,6 +312,11 @@
     width: 100%;
   }
 
+  .openButton {
+    width: 100%;
+    max-width: 220px;
+  }
+
   .response {
     white-space: normal;
   }

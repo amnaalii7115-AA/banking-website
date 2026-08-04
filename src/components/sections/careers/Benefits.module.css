@@ -270,22 +270,47 @@
     padding: 45px 16px;
   }
 
+  .header {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 0;
+
+    text-align: center;
+  }
+
   .header h2 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 30px;
+    text-align: center;
   }
 
   .header p {
+    width: 100%;
+    max-width: 358px;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 
   .card {
+    align-items: flex-start;
     gap: 22px;
+
     padding: 24px;
+
     border-radius: 14px;
+    text-align: left;
   }
 
   .cardHeading {
+    justify-content: flex-start;
     gap: 14px;
+
+    width: 100%;
   }
 
   .iconOuter {
@@ -305,9 +330,11 @@
 
   .cardHeading h3 {
     font-size: 18px;
+    text-align: left;
   }
 
   .card > p {
     font-size: 14px;
+    text-align: left;
   }
 }

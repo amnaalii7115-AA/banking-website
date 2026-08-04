@@ -333,7 +333,6 @@
     min-height: auto;
   }
 }
-
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -342,15 +341,36 @@
     padding: 50px 16px 70px;
   }
 
+  /* Main section heading */
+
+  .header {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 0;
+
+    text-align: center;
+  }
+
   .header h2 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 30px;
+    text-align: center;
   }
 
   .header p {
+    width: 100%;
+    max-width: 358px;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 
   .cardsContainer {
+    width: 100%;
     padding-inline: 0;
   }
 
@@ -364,6 +384,8 @@
 
   .card {
     gap: 18px;
+
+    width: 100%;
     padding: 24px;
 
     border-radius: 16px;
@@ -371,6 +393,8 @@
 
   .cardHeader {
     align-items: center;
+
+    width: 100%;
   }
 
   .cardHeader h3 {

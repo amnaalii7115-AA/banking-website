@@ -170,7 +170,6 @@
     min-height: auto;
   }
 }
-
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -178,24 +177,48 @@
     padding: 45px 16px;
   }
 
+  .header {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 0;
+
+    text-align: center;
+  }
+
   .header h2 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 30px;
+    text-align: center;
   }
 
   .header p {
+    width: 100%;
+    max-width: 358px;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 
   .valueCard {
+    align-items: flex-start;
     gap: 12px;
+
     padding-left: 18px;
+
+    text-align: left;
   }
 
   .valueCard h3 {
     font-size: 26px;
+    text-align: left;
   }
 
   .valueCard p {
     font-size: 14px;
+    text-align: left;
   }
 }

@@ -599,6 +599,9 @@
   }
 
   .loginContainer {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     gap: 40px;
     padding: 55px 20px 45px;
   }
@@ -633,6 +636,8 @@
   }
 
   .inputRow {
+    width: 100%;
+    min-width: 0;
     flex-direction: column;
     gap: 16px;
   }
@@ -646,6 +651,8 @@
   }
 
   .actions {
+    width: 100%;
+    max-width: 404px;
     gap: 18px;
   }
 

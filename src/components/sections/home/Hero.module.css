@@ -1011,7 +1011,16 @@
   }
 
   .heroInner {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     gap: 85px;
+  }
+
+  .heroContent {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .badge {
@@ -1030,6 +1039,8 @@
 
   .bankingArea {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     height: auto;
   }
 
@@ -1090,5 +1101,26 @@
 
     width: 220px;
     height: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding-inline: 12px;
+  }
+
+  .title {
+    font-size: 27px;
+  }
+
+  .badge {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .openAccountButton {
+    width: 100%;
+    max-width: 220px;
   }
 }

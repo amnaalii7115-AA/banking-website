@@ -354,12 +354,32 @@
     padding: 45px 16px;
   }
 
+  /* Main Mission & Vision header */
+
+  .sectionHeader {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 0;
+
+    text-align: center;
+  }
+
   .sectionHeader h2 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 30px;
+    text-align: center;
   }
 
   .sectionHeader p {
+    width: 100%;
+    max-width: 358px;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 
   .content {
@@ -387,16 +407,34 @@
     height: 390px;
   }
 
+  /* Separate Mission and Vision content */
+
   .textContainer,
   .reverseRow .textContainer {
+    align-items: center;
+
+    width: 100%;
+    padding-right: 20px;
     padding-left: 20px;
+
+    text-align: center;
   }
 
-  .textContainer h3 {
+  .textContainer h3,
+  .reverseRow .textContainer h3 {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 26px;
+    text-align: center;
   }
 
-  .textContainer p {
+  .textContainer p,
+  .reverseRow .textContainer p {
+    width: 100%;
+    margin-inline: auto;
+
     font-size: 14px;
+    text-align: center;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Testimonials.module.css";
 
 type TestimonialCategory = "individuals" | "businesses";
@@ -9,6 +9,9 @@ type Testimonial = {
   name: string;
   text: string;
 };
+
+type SlideDirection = "next" | "previous";
+type AnimationPhase = "idle" | "exit" | "enter";
 
 const testimonialData: Record<TestimonialCategory, Testimonial[]> = {
   individuals: [
@@ -63,6 +66,11 @@ export default function Testimonials() {
     useState<TestimonialCategory>("individuals");
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] =
+    useState<SlideDirection>("next");
+  const [animationPhase, setAnimationPhase] =
+    useState<AnimationPhase>("idle");
+  const transitionTimer = useRef<number | null>(null);
 
   const testimonials = testimonialData[activeCategory];
 
@@ -72,27 +80,72 @@ export default function Testimonials() {
       testimonials[(currentIndex + index) % testimonials.length],
   );
 
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current !== null) {
+        window.clearTimeout(transitionTimer.current);
+      }
+    };
+  }, []);
+
+  const runTransition = (
+    updateTestimonials: () => void,
+    slideDirection: SlideDirection,
+  ) => {
+    if (animationPhase !== "idle") return;
+
+    setDirection(slideDirection);
+    setAnimationPhase("exit");
+
+    transitionTimer.current = window.setTimeout(() => {
+      updateTestimonials();
+      setAnimationPhase("enter");
+    }, 220);
+  };
+
   const handlePrevious = () => {
-    setCurrentIndex((previousIndex) =>
-      previousIndex === 0
-        ? testimonials.length - 1
-        : previousIndex - 1,
-    );
+    runTransition(() => {
+      setCurrentIndex((previousIndex) =>
+        previousIndex === 0
+          ? testimonials.length - 1
+          : previousIndex - 1,
+      );
+    }, "previous");
   };
 
   const handleNext = () => {
-    setCurrentIndex(
-      (previousIndex) =>
-        (previousIndex + 1) % testimonials.length,
-    );
+    runTransition(() => {
+      setCurrentIndex(
+        (previousIndex) =>
+          (previousIndex + 1) % testimonials.length,
+      );
+    }, "next");
   };
 
   const handleCategoryChange = (
     category: TestimonialCategory,
   ) => {
-    setActiveCategory(category);
-    setCurrentIndex(0);
+    if (category === activeCategory) return;
+
+    runTransition(() => {
+      setActiveCategory(category);
+      setCurrentIndex(0);
+    }, "next");
   };
+
+  const handleAnimationEnd = () => {
+    if (animationPhase === "enter") {
+      setAnimationPhase("idle");
+    }
+  };
+
+  const getInitials = (name: string) =>
+    name
+      .split(" ")
+      .map((part) => part.charAt(0))
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
 
   return (
     <section
@@ -175,32 +228,58 @@ export default function Testimonials() {
               aria-hidden="true"
             />
 
-            {visibleTestimonials.map(
-              (testimonial, index) => (
-                <article
-                  className={`${styles.card} ${
-                    index === 1 ? styles.centerCard : ""
-                  } ${
-                    index === 0 ? styles.mobileCard : ""
-                  }`}
-                  key={`${activeCategory}-${currentIndex}-${testimonial.name}`}
-                >
-                  <div className={styles.quoteRow}>
-                    <span className={styles.line} />
-                    <QuoteIcon />
-                    <span className={styles.line} />
-                  </div>
+            <div
+              className={`${styles.cardsTrack} ${
+                animationPhase === "exit"
+                  ? direction === "next"
+                    ? styles.exitToLeft
+                    : styles.exitToRight
+                  : ""
+              } ${
+                animationPhase === "enter"
+                  ? direction === "next"
+                    ? styles.enterFromRight
+                    : styles.enterFromLeft
+                  : ""
+              }`}
+              onAnimationEnd={handleAnimationEnd}
+            >
+              {visibleTestimonials.map(
+                (testimonial, index) => (
+                  <article
+                    className={`${styles.card} ${
+                      index === 1 ? styles.centerCard : ""
+                    } ${
+                      index === 0 ? styles.mobileCard : ""
+                    }`}
+                    key={`${activeCategory}-${currentIndex}-${testimonial.name}`}
+                  >
+                    <div className={styles.quoteRow}>
+                      <span className={styles.line} />
+                      <QuoteIcon />
+                      <span className={styles.line} />
+                    </div>
 
-                  <p className={styles.cardText}>
-                    {testimonial.text}
-                  </p>
+                    <p className={styles.cardText}>
+                      {testimonial.text}
+                    </p>
 
-                  <span className={styles.customerName}>
-                    {testimonial.name}
-                  </span>
-                </article>
-              ),
-            )}
+                    <div className={styles.customerIdentity}>
+                      <span
+                        className={styles.avatar}
+                        aria-hidden="true"
+                      >
+                        {getInitials(testimonial.name)}
+                      </span>
+
+                      <span className={styles.customerName}>
+                        {testimonial.name}
+                      </span>
+                    </div>
+                  </article>
+                ),
+              )}
+            </div>
           </div>
 
           <button

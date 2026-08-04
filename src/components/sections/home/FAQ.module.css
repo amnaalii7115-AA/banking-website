@@ -316,7 +316,11 @@
     gap: 40px;
 
     width: 100%;
+    max-width: 100%;
+    height: auto;
     padding: 50px 16px;
+
+    overflow: visible;
   }
 
   /* FAQ heading and description */
@@ -362,49 +366,93 @@
   /* FAQ content */
 
   .faqContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     width: 100%;
     max-width: 358px;
+    height: auto;
     margin-inline: auto;
+
+    overflow: visible;
   }
 
   .itemsContainer {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
 
     width: 100%;
+    height: auto;
+
+    transition: max-height 0.5s ease;
+  }
+
+  /* Closed state */
+
+  .itemsContainer.collapsed {
+    max-height: 610px;
+
+    overflow: hidden;
+  }
+
+  /* Load More ke baad complete content ki space */
+
+  .itemsContainer.expanded {
+    max-height: 5000px;
+
+    overflow: visible;
   }
 
   .faqItem {
     gap: 18px;
 
     width: 100%;
+    min-width: 0;
     min-height: auto;
+    height: auto;
     padding: 24px;
 
     text-align: left;
   }
 
   .faqItem h3 {
+    width: 100%;
+    margin: 0;
+
     font-size: 16px;
     line-height: 24px;
     text-align: left;
   }
 
   .faqItem p {
+    width: 100%;
+    margin: 0;
+
     font-size: 14px;
     line-height: 21px;
     text-align: left;
-  }
-
-  .collapsed {
-    max-height: 610px;
   }
 
   .fadeOverlay {
     height: 200px;
   }
 
+  /* Expanded state mein fade remove */
+
+  .expanded .fadeOverlay {
+    display: none;
+  }
+
   .loadButton {
+    position: relative;
+    z-index: 3;
+
+    flex-shrink: 0;
+
+    margin-top: 20px;
+
     white-space: nowrap;
   }
 }
