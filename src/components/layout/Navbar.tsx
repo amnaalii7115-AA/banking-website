@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
@@ -22,12 +22,12 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((previousState) => !previousState);
-  };
-
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((previousState) => !previousState);
   };
 
   const isActiveRoute = (href: string) => {
@@ -41,13 +41,35 @@ export default function Navbar() {
   const isLoginPage = pathname === "/login";
   const isSignUpPage = pathname === "/signup";
 
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      document.body.style.removeProperty("overflow");
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.removeProperty("overflow");
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMenuOpen]);
+
   return (
     <Container>
-      <div
-  className={`${styles.navbarArea} ${
-    isMenuOpen ? styles.navbarAreaOpen : ""
-  }`}
->
+      <div className={styles.navbarArea}>
         <Image
           src="/images/nav-pattern.svg"
           alt=""
@@ -62,28 +84,46 @@ export default function Navbar() {
           <Logo href="/" />
 
           <nav
+            id="main-navigation"
             className={`${styles.navigation} ${
               isMenuOpen ? styles.navigationOpen : ""
             }`}
             aria-label="Main navigation"
+            aria-hidden={!isMenuOpen ? undefined : false}
           >
-            {navigationLinks.map((link) => {
-              const isActive = isActiveRoute(link.href);
+            <div className={styles.mobileMenuHeader}>
+              <span>Menu</span>
 
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`${styles.navLink} ${
-                    isActive ? styles.navLinkActive : ""
-                  }`}
-                  onClick={closeMenu}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+              <button
+                type="button"
+                className={styles.drawerCloseButton}
+                onClick={closeMenu}
+                aria-label="Close navigation menu"
+              >
+                <span />
+                <span />
+              </button>
+            </div>
+
+            <div className={styles.navigationLinks}>
+              {navigationLinks.map((link) => {
+                const isActive = isActiveRoute(link.href);
+
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className={`${styles.navLink} ${
+                      isActive ? styles.navLinkActive : ""
+                    }`}
+                    onClick={closeMenu}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
 
             <div className={styles.mobileActions}>
               <Link
@@ -140,14 +180,29 @@ export default function Navbar() {
               isMenuOpen ? styles.menuButtonOpen : ""
             }`}
             onClick={toggleMenu}
-            aria-label="Toggle navigation menu"
+            aria-label={
+              isMenuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+            }
             aria-expanded={isMenuOpen}
+            aria-controls="main-navigation"
           >
             <span />
             <span />
             <span />
           </button>
         </header>
+
+        <button
+          type="button"
+          className={`${styles.menuBackdrop} ${
+            isMenuOpen ? styles.menuBackdropVisible : ""
+          }`}
+          onClick={closeMenu}
+          aria-label="Close navigation menu"
+          tabIndex={isMenuOpen ? 0 : -1}
+        />
       </div>
     </Container>
   );

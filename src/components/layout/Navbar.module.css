@@ -31,7 +31,7 @@
 
 .navbar {
   position: relative;
-  z-index: 2;
+  z-index: 20;
 
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
     border-color 0.3s ease;
 }
 
-/* Navigation */
+/* Desktop navigation */
 
 .navigation {
   position: absolute;
@@ -63,23 +63,32 @@
   transform: translateX(-50%);
 }
 
+.navigationLinks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .navLink {
   padding: 12px 19px;
 
   background-color: transparent;
   color: var(--text-primary);
 
+  border: 1px solid transparent;
   border-radius: 82px;
 
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
 
   transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    transform 0.3s ease;
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .navLink:hover {
@@ -101,6 +110,12 @@
   outline-offset: 3px;
 }
 
+.navLinkActive {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+  border-color: var(--border-color);
+}
+
 /* Right actions */
 
 .actions {
@@ -108,8 +123,6 @@
   align-items: center;
   gap: 12px;
 }
-
-/* Desktop Sign Up and Login */
 
 .signUp,
 .loginLink {
@@ -122,7 +135,7 @@
   padding: 14px 24px;
 
   background-color: #1c1c1c;
-  color: var(--text-primary);
+  color: #ffffff;
 
   border: 1px solid var(--border-color);
   border-radius: 82px;
@@ -133,14 +146,12 @@
   text-decoration: none;
   white-space: nowrap;
 
-  cursor: pointer;
-
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
     border-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .signUp:hover,
@@ -159,120 +170,35 @@
   transform: translateY(0);
 }
 
-.signUp:focus-visible,
-.loginLink:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 3px;
-}
-
-/* Mobile menu button */
-
-.menuButton {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  width: 43px;
-  height: 43px;
-  padding: 0;
-
-  background-color: var(--accent-color);
-
-  border: none;
-  border-radius: 50%;
-
-  cursor: pointer;
-}
-
-.menuButton span {
-  display: block;
-
-  width: 19px;
-  height: 2px;
-
-  background-color: #1c1c1c;
-  border-radius: 5px;
-
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-.menuButtonOpen span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menuButtonOpen span:nth-child(2) {
-  opacity: 0;
-}
-
-.menuButtonOpen span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* Mobile actions */
-
-.mobileActions {
-  display: none;
-}
-
-.mobileSignUp,
-.mobileLogin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex: 1;
-  min-height: 46px;
-  padding: 12px 20px;
-
-  background-color: #1c1c1c;
-  color: var(--text-primary);
-
-  border: 1px solid var(--border-color);
-  border-radius: 82px;
-
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  text-decoration: none;
-  white-space: nowrap;
-
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.mobileSignUp:hover,
-.mobileLogin:hover {
+.accountLinkActive,
+.signUp.accountLinkActive,
+.loginLink.accountLinkActive {
   background-color: var(--accent-color);
   color: #191919;
   border-color: var(--accent-color);
-
-  transform: translateY(-1px);
 }
 
-.mobileSignUp:active,
-.mobileLogin:active {
-  transform: translateY(0);
+.accountLinkActive:hover,
+.signUp.accountLinkActive:hover,
+.loginLink.accountLinkActive:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+  border-color: var(--accent-color);
 }
 
-.mobileSignUp:focus-visible,
-.mobileLogin:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 3px;
+/* Menu elements hidden on desktop */
+
+.menuButton,
+.mobileMenuHeader,
+.mobileActions,
+.menuBackdrop {
+  display: none;
 }
 
 /* Light theme */
 
 :global([data-theme="light"]) .signUp,
-:global([data-theme="light"]) .loginLink,
-:global([data-theme="light"]) .mobileSignUp,
-:global([data-theme="light"]) .mobileLogin {
+:global([data-theme="light"]) .loginLink {
   background-color: var(--background-secondary);
   color: var(--text-primary);
   border-color: var(--border-color);
@@ -280,14 +206,14 @@
 
 :global([data-theme="light"]) .signUp:hover,
 :global([data-theme="light"]) .loginLink:hover,
-:global([data-theme="light"]) .mobileSignUp:hover,
-:global([data-theme="light"]) .mobileLogin:hover {
+:global([data-theme="light"]) .signUp.accountLinkActive,
+:global([data-theme="light"]) .loginLink.accountLinkActive {
   background-color: var(--accent-color);
   color: #191919;
   border-color: var(--accent-color);
 }
 
-/* Tablet */
+/* Mobile and tablet drawer */
 
 @media (max-width: 900px) {
   .navbarArea {
@@ -309,79 +235,299 @@
     padding: 12px 14px 12px 22px;
   }
 
-  .actions .signUp,
-  .actions .loginLink {
-    display: none;
-  }
-
   .actions {
     margin-left: auto;
     margin-right: 10px;
   }
 
-  .menuButton {
-    display: flex;
+  .actions .signUp,
+  .actions .loginLink {
+    display: none;
   }
 
+  /* Hamburger */
+
+  .menuButton {
+    position: relative;
+    z-index: 110;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    flex-shrink: 0;
+
+    width: 43px;
+    height: 43px;
+    padding: 0;
+
+    background-color: var(--accent-color);
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .menuButton span {
+    display: block;
+
+    width: 19px;
+    height: 2px;
+
+    background-color: #1c1c1c;
+    border-radius: 5px;
+
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .menuButtonOpen span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menuButtonOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuButtonOpen span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Dark page backdrop */
+
+  .menuBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(0 0 0 / 62%);
+
+    border: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .menuBackdropVisible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Right-side drawer */
+
   .navigation {
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 0;
+    position: fixed;
+    top: 0;
     right: 0;
-    z-index: 10;
+    bottom: 0;
+    left: auto;
+    z-index: 100;
 
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
+    gap: 26px;
 
-    padding: 14px;
+    width: min(380px, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 28px 22px;
 
     background-color: var(--background-secondary);
 
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border: 0;
+    border-left: 1px solid var(--border-color);
+    border-radius: 28px 0 0 28px;
 
-    opacity: 0;
+    box-shadow: -20px 0 60px rgb(0 0 0 / 35%);
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    opacity: 1;
     visibility: hidden;
+    pointer-events: none;
 
-    transform: translateY(-10px);
+    transform: translateX(105%);
 
     transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease,
-      transform 0.3s ease;
+      visibility 0.35s ease,
+      transform 0.35s ease;
   }
 
   .navigationOpen {
-    opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
-  .navLink {
+  .mobileMenuHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     width: 100%;
-    padding: 14px 18px;
+    padding-bottom: 20px;
 
-    text-align: center;
+    border-bottom: 1px solid var(--border-color);
   }
 
-  .mobileActions {
+  .mobileMenuHeader > span {
+    color: var(--text-primary);
+
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .drawerCloseButton {
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    background-color: var(--accent-color);
+
+    border: 0;
+    border-radius: 50%;
+  }
+
+  .drawerCloseButton span {
+    position: absolute;
+
+    width: 18px;
+    height: 2px;
+
+    background-color: #191919;
+    border-radius: 5px;
+  }
+
+  .drawerCloseButton span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .drawerCloseButton span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .navigationLinks {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 
     width: 100%;
-    margin-top: 8px;
-    padding-top: 14px;
+  }
+
+  .navLink {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 54px;
+    padding: 15px 20px;
+
+    background-color: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+
+    font-size: 15px;
+    line-height: 22px;
+
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .navLink:hover,
+  .navLink:active,
+  .navLink:focus-visible,
+  .navLinkActive {
+    background-color: var(--background-card);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+
+    transform: none;
+  }
+
+  .mobileActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    width: 100%;
+    margin-top: auto;
+    padding-top: 22px;
 
     border-top: 1px solid var(--border-color);
   }
+
+  .mobileSignUp,
+  .mobileLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 49px;
+    padding: 12px 16px;
+
+    background-color: var(--background-card);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+    border-radius: 82px;
+
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+
+    cursor: pointer;
+    touch-action: manipulation;
+
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .mobileSignUp:hover,
+  .mobileSignUp:active,
+  .mobileLogin:hover,
+  .mobileLogin:active,
+  .mobileSignUp.accountLinkActive,
+  .mobileLogin.accountLinkActive {
+    background-color: var(--accent-color);
+    color: #191919;
+    border-color: var(--accent-color);
+
+    transform: none;
+  }
 }
 
-/* Mobile */
+/* Small mobile */
 
 @media (max-width: 480px) {
   .navPattern {
@@ -408,277 +554,36 @@
     height: 40px;
   }
 
-  .mobileActions {
-    flex-direction: column;
-  }
-
-  .mobileSignUp,
-  .mobileLogin {
-    width: 100%;
-  }
-}
-/* Current navigation page */
-
-.navLinkActive {
-  background-color: var(--background-card);
-  color: var(--accent-color);
-}
-
-/* Current Login or Sign Up page */
-
-.accountLinkActive {
-  background-color: var(--accent-color);
-  color: #191919;
-  border-color: var(--accent-color);
-}
-
-/* Active Sign Up button ko proper pill shape dene ke liye */
-
-.signUp.accountLinkActive {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 87px;
-  height: 49px;
-  padding: 14px 24px;
-
-  border: 1px solid var(--accent-color);
-  border-radius: 82px;
-}
-
-/* Active buttons hover par bhi green rahenge */
-
-.accountLinkActive:hover,
-.loginLink.accountLinkActive:hover,
-.signUp.accountLinkActive:hover,
-.mobileLogin.accountLinkActive:hover,
-.mobileSignUp.accountLinkActive:hover {
-  background-color: var(--accent-color);
-  color: #191919;
-  border-color: var(--accent-color);
-}
-
-/* Mobile active buttons */
-
-.mobileSignUp.accountLinkActive,
-.mobileLogin.accountLinkActive {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  min-height: 46px;
-  padding: 12px 20px;
-
-  background-color: var(--accent-color);
-  color: #191919;
-
-  border: 1px solid var(--accent-color);
-  border-radius: 82px;
-}
-
-/* Light theme active navigation */
-
-:global([data-theme="light"]) .navLinkActive {
-  background-color: var(--background-card);
-  color: var(--accent-color);
-}
-
-:global([data-theme="light"]) .accountLinkActive {
-  background-color: var(--accent-color);
-  color: #191919;
-  border-color: var(--accent-color);
-}
-/* =========================================
-   MOBILE NAVIGATION FIX
-   Desktop styling remains unchanged
-========================================= */
-
-@media (max-width: 900px) {
-  .navbarArea {
-    position: relative;
-    z-index: 9999;
-
-    margin-bottom: 0;
-
-    overflow: visible;
-
-    transition: margin-bottom 0.3s ease;
-  }
-
-  /* Menu open hone par content neeche move hoga */
-  .navbarAreaOpen {
-    margin-bottom: 390px;
-  }
-
-  .navbar {
-    position: relative;
-    z-index: 10001;
-
-    overflow: visible;
-  }
-
-  .menuButton {
-    position: relative;
-    z-index: 10003;
-
-    display: flex;
-
-    flex-shrink: 0;
-
-    cursor: pointer;
-    touch-action: manipulation;
-  }
-
   .navigation {
-    position: absolute;
-    top: calc(100% + 16px);
-    right: 0;
-    left: 0;
-    z-index: 10002;
+    width: min(340px, 92vw);
+    padding: 22px 18px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    width: 100%;
-    height: auto;
-    padding: 16px;
-
-    background-color: var(--background-secondary);
-
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-
-    box-shadow: 0 18px 45px rgb(0 0 0 / 35%);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transform: translateY(-12px);
-
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease,
-      transform 0.3s ease;
+    border-radius: 22px 0 0 22px;
   }
 
-  .navigationOpen {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
-    transform: translateY(0);
+  .mobileMenuHeader > span {
+    font-size: 20px;
   }
 
   .navLink {
-    position: relative;
-    z-index: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
     min-height: 50px;
-    padding: 14px 20px;
-
-    background-color: transparent;
-    color: var(--text-primary);
-
-    border: 1px solid transparent;
-    border-radius: 82px;
-
-    font-size: 15px;
-    line-height: 22px;
-    text-align: center;
-
-    cursor: pointer;
-    pointer-events: auto;
-    touch-action: manipulation;
-  }
-
-  .navLink:hover,
-  .navLink:active,
-  .navLink:focus-visible {
-    background-color: var(--background-card);
-    color: var(--accent-color);
-    border-color: var(--border-color);
-
-    transform: none;
+    padding: 13px 17px;
   }
 
   .mobileActions {
-    position: relative;
-    z-index: 1;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-
-    width: 100%;
-    margin-top: 8px;
-    padding-top: 16px;
-
-    border-top: 1px solid var(--border-color);
-  }
-
-  .mobileSignUp,
-  .mobileLogin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 48px;
-    padding: 12px 16px;
-
-    background-color: transparent;
-    color: var(--text-primary);
-
-    border: 1px solid var(--border-color);
-    border-radius: 82px;
-
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-
-    cursor: pointer;
-    pointer-events: auto;
-    touch-action: manipulation;
-
-    transition:
-      background-color 0.25s ease,
-      color 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .mobileSignUp:hover,
-  .mobileSignUp:active,
-  .mobileLogin:hover,
-  .mobileLogin:active {
-    background-color: var(--accent-color);
-    color: #191919;
-    border-color: var(--accent-color);
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .navbarAreaOpen {
-    margin-bottom: 380px;
-  }
+/* Reduced motion */
 
-  .navigation {
-    top: calc(100% + 12px);
-    padding: 14px;
-    border-radius: 20px;
-  }
-
-  .navLink {
-    min-height: 48px;
-    padding: 12px 16px;
+@media (prefers-reduced-motion: reduce) {
+  .navigation,
+  .menuBackdrop,
+  .menuButton span,
+  .navLink,
+  .signUp,
+  .loginLink {
+    transition: none;
   }
 }
