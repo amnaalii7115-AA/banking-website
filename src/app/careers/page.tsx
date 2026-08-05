@@ -6,6 +6,13 @@ import JobOpenings from "@/components/sections/careers/JobOpenings";
 import FAQ from "@/components/sections/home/FAQ";
 import CareersCTA from "@/components/sections/careers/CareersCTA";
 import Footer from "@/components/layout/Footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Explore career opportunities, employee benefits and available positions at YourBank.",
+};
 
 export default function CareersPage() {
   return (

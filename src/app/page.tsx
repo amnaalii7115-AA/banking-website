@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -10,6 +12,12 @@ import Testimonials from "@/components/sections/home/Testimonials";
 import CTA from "@/components/sections/home/CTA";
 
 import Reveal from "@/components/ui/Reveal";
+
+export const metadata: Metadata = {
+  title: "Home | YourBank",
+  description:
+    "Explore secure and personalized digital banking solutions for individuals and businesses with YourBank.",
+};
 
 export default function Home() {
   return (

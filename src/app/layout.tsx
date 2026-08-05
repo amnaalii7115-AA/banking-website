@@ -43,28 +43,24 @@ export const metadata: Metadata = {
   publisher: "YourBank",
 
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-      {
-        url: "/icon.png",
-        type: "image/png",
-        sizes: "512x512",
-      },
-    ],
+  icon: [
+    {
+      url: "/icon.png",
+      type: "image/png",
+      sizes: "512x512",
+    },
+  ],
 
-    shortcut: "/favicon.ico",
+  shortcut: "/icon.png",
 
-    apple: [
-      {
-        url: "/apple-icon.png",
-        type: "image/png",
-        sizes: "180x180",
-      },
-    ],
-  },
+  apple: [
+    {
+      url: "/icon.png",
+      type: "image/png",
+      sizes: "512x512",
+    },
+  ],
+},
 
   openGraph: {
     title: "YourBank | Digital Banking Solutions",

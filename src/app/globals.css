@@ -1,36 +1,62 @@
-/* Dark theme colours */
+/* =========================
+   DARK THEME
+========================= */
+
 :root {
+  color-scheme: dark;
+
   --background-primary: #191919;
   --background-secondary: #1c1c1c;
   --background-card: #222222;
+  --background-input: #1a1a1a;
   --income-background: #22251b;
 
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
+  --text-muted: #777777;
 
   --accent-color: #caff33;
-  --border-color: #262626;
+  --accent-soft: rgb(202 255 51 / 8%);
+  --accent-glow: rgb(202 255 51 / 14%);
 
-  color-scheme: dark;
+  --border-color: #262626;
+  --overlay-color: rgb(0 0 0 / 62%);
+  --shadow-color: rgb(0 0 0 / 25%);
+
+  --theme-transition-duration: 0.35s;
+  --theme-transition-timing: ease;
 }
 
-/* Light theme colours */
+/* =========================
+   LIGHT THEME
+========================= */
+
 [data-theme="light"] {
+  color-scheme: light;
+
   --background-primary: #f7f8f3;
   --background-secondary: #ffffff;
   --background-card: #f1f3eb;
+  --background-input: #f5f7f0;
   --income-background: #eef1e7;
 
   --text-primary: #191919;
   --text-secondary: #59595a;
+  --text-muted: #777a72;
 
   --accent-color: #9dcc19;
-  --border-color: #d9ddd1;
+  --accent-soft: rgb(157 204 25 / 10%);
+  --accent-glow: rgb(157 204 25 / 16%);
 
-  color-scheme: light;
+  --border-color: #d9ddd1;
+  --overlay-color: rgb(25 25 25 / 25%);
+  --shadow-color: rgb(30 35 20 / 12%);
 }
 
-/* Basic reset */
+/* =========================
+   RESET
+========================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,16 +64,12 @@
 }
 
 html {
-  width: 100%;
-  min-width: 320px;
-  scroll-behavior: smooth;
   max-width: 100%;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: var(--background-primary);
 }
 
 body {
-  width: 100%;
-  min-width: 320px;
   min-height: 100vh;
   max-width: 100%;
 
@@ -56,75 +78,7 @@ body {
 
   font-family: Arial, Helvetica, sans-serif;
 
-  transition:
-    background-color 0.45s ease,
-    color 0.45s ease;
   overflow-x: hidden;
-}
-
-main {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-main,
-section,
-header,
-footer,
-nav,
-article,
-aside {
-  min-width: 0;
-  max-width: 100%;
-}
-
-button,
-input,
-textarea,
-select {
-  max-width: 100%;
-}
-
-h1,
-h2,
-h3,
-p,
-a,
-span {
-  overflow-wrap: break-word;
-}
-
-img,
-svg,
-video,
-canvas {
-  max-width: 100%;
-}
-
-@media (max-width: 600px) {
-  main,
-  section {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-:where(section, header, footer, nav, article, div, button, a, input, textarea) {
-  transition-property:
-    background-color,
-    border-color,
-    color,
-    box-shadow,
-    fill,
-    stroke;
-  transition-duration: 0.45s;
-  transition-timing-function: ease;
-}
-
-body.menu-open {
-  overflow: hidden;
 }
 
 a {
@@ -134,13 +88,73 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
 button {
   cursor: pointer;
 }
+
+/* =========================
+   SYNCHRONIZED THEME CHANGE
+========================= */
+
+html,
+body,
+main,
+header,
+footer,
+section,
+nav,
+article,
+aside,
+form,
+div,
+button,
+a,
+input,
+textarea,
+select,
+svg,
+svg path,
+svg circle,
+svg rect {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    color var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    border-color var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    fill var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    stroke var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    opacity var(--theme-transition-duration)
+      var(--theme-transition-timing);
+}
+
+/* Images should not flash during theme switching */
+
+img {
+  transition:
+    opacity var(--theme-transition-duration)
+      var(--theme-transition-timing),
+    filter var(--theme-transition-duration)
+      var(--theme-transition-timing);
+}
+
+/* Keyboard accessibility */
+
+:focus-visible {
+  outline-color: var(--accent-color);
+}
+
+/* Disable animations when requested by device */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -151,8 +165,8 @@ button {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
