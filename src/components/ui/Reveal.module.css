@@ -1,0 +1,19 @@
+.reveal {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none !important;
+
+    opacity: 1 !important;
+
+    transition: none !important;
+  }
+}
