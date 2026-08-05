@@ -9,17 +9,39 @@ import FAQ from "@/components/sections/home/FAQ";
 import Testimonials from "@/components/sections/home/Testimonials";
 import CTA from "@/components/sections/home/CTA";
 
+import Reveal from "@/components/ui/Reveal";
+
 export default function Home() {
   return (
     <main>
       <Navbar />
+
       <Hero />
-      <Products />
-      <UseCases />
-      <Features />
-      <FAQ />
-      <Testimonials />
-      <CTA />
+
+      <Reveal>
+        <Products />
+      </Reveal>
+
+      <Reveal>
+        <UseCases />
+      </Reveal>
+
+      <Reveal>
+        <Features />
+      </Reveal>
+
+      <Reveal>
+        <FAQ />
+      </Reveal>
+
+      <Reveal>
+        <Testimonials />
+      </Reveal>
+
+      <Reveal>
+        <CTA />
+      </Reveal>
+
       <Footer />
     </main>
   );

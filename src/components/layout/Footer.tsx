@@ -7,6 +7,8 @@ const navigationLinks = [
   { label: "Careers", href: "/careers" },
   { label: "About", href: "/about" },
   { label: "Security", href: "/security" },
+  { label: "Contact", href: "/contact" },
+
 ];
 
 function EmailIcon() {
