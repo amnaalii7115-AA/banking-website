@@ -1,16 +1,28 @@
+.stickyNavbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--background-primary);
+}
+
 .navbarArea {
   position: relative;
 
   width: 100%;
-  margin-top: 30px;
+  margin: 0;
+  padding: 0;
 
   overflow: visible;
 }
-
 .navPattern {
   position: absolute;
-  top: -74px;
-  left: -115px;
+  top: 0;
+  left: calc((100vw - 100%) / -2);
   z-index: 0;
 
   display: block;
@@ -203,31 +215,26 @@
   color: #191919;
   border-color: var(--accent-color);
 }
-
 /* Mobile and tablet */
 
 @media (max-width: 900px) {
-  .navbarArea {
-    position: relative;
-    z-index: 1000;
+ .navbarArea {
+  position: relative;
+  z-index: 1000;
 
-    margin-top: 20px;
-  }
+  margin: 0;
+  padding: 0;
+}
 
-  .navPattern {
-    top: -55px;
-    left: -75px;
+.navPattern {
+  top: 0;
+  left: calc((100vw - 100%) / -2);
 
-    width: 360px;
-    height: auto;
+  width: 360px;
+  height: auto;
 
-    opacity: 0.8;
-  }
-
-  /*
-    Navbar is above the backdrop.
-    This prevents the backdrop from blocking drawer clicks.
-  */
+  opacity: 0.8;
+}
 
   .navbar {
     position: relative;
@@ -333,14 +340,14 @@
     pointer-events: auto;
   }
 
-  /* Solid mobile drawer */
+  /* Left-side mobile drawer */
 
   .navigation {
     position: fixed;
     top: 0;
-    right: 0;
+    right: auto;
     bottom: 0;
-    left: auto;
+    left: 0;
     z-index: 1200;
 
     display: flex;
@@ -357,10 +364,10 @@
     color: #ffffff;
 
     border: 0;
-    border-left: 1px solid #2c2c2c;
-    border-radius: 28px 0 0 28px;
+    border-right: 1px solid #2c2c2c;
+    border-radius: 0 28px 28px 0;
 
-    box-shadow: -20px 0 60px rgb(0 0 0 / 55%);
+    box-shadow: 20px 0 60px rgb(0 0 0 / 55%);
 
     overflow-x: hidden;
     overflow-y: auto;
@@ -370,7 +377,7 @@
     visibility: hidden;
     pointer-events: none;
 
-    transform: translateX(105%);
+    transform: translateX(-105%);
 
     transition:
       visibility 0.35s ease,
@@ -403,9 +410,32 @@
     border-bottom: 1px solid #2c2c2c;
   }
 
-  .mobileMenuHeader > span {
-    font-size: 22px;
+  .mobileDrawerLogo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #ffffff;
+
+    font-size: 20px;
     font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+
+    cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  .mobileDrawerLogoIcon {
+    display: block;
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
   }
 
   .drawerCloseButton {
@@ -481,6 +511,7 @@
 
     font-size: 15px;
     line-height: 22px;
+    text-decoration: none;
 
     cursor: pointer;
     pointer-events: auto;
@@ -564,12 +595,16 @@
     background-color: #ffffff;
     color: #191919;
 
-    border-left-color: var(--border-color);
+    border-right-color: var(--border-color);
   }
 
   :global([data-theme="light"]) .mobileMenuHeader {
     color: #191919;
     border-bottom-color: var(--border-color);
+  }
+
+  :global([data-theme="light"]) .mobileDrawerLogo {
+    color: #191919;
   }
 
   :global([data-theme="light"]) .navLink,
@@ -582,6 +617,7 @@
   }
 
   :global([data-theme="light"]) .navLink:hover,
+  :global([data-theme="light"]) .navLink:active,
   :global([data-theme="light"]) .navLinkActive,
   :global([data-theme="light"])
     .mobileSignUp.accountLinkActive,
@@ -597,14 +633,14 @@
 
 @media (max-width: 480px) {
   .navPattern {
-    top: -40px;
-    left: -55px;
+  top: 0;
+  left: calc((100vw - 100%) / -2);
 
-    width: 270px;
-    height: auto;
+  width: 270px;
+  height: auto;
 
-    opacity: 0.7;
-  }
+  opacity: 0.7;
+}
 
   .navbar {
     min-height: 64px;
@@ -624,11 +660,16 @@
     width: min(350px, 92vw);
     padding: 22px 16px;
 
-    border-radius: 24px 0 0 24px;
+    border-radius: 0 24px 24px 0;
   }
 
-  .mobileMenuHeader > span {
-    font-size: 20px;
+  .mobileDrawerLogo {
+    font-size: 18px;
+  }
+
+  .mobileDrawerLogoIcon {
+    width: 32px;
+    height: 32px;
   }
 
   .navLink {

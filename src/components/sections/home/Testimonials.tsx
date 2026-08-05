@@ -66,10 +66,16 @@ export default function Testimonials() {
     useState<TestimonialCategory>("individuals");
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [selectedTestimonial, setSelectedTestimonial] =
+    useState<string | null>(null);
+
   const [direction, setDirection] =
     useState<SlideDirection>("next");
+
   const [animationPhase, setAnimationPhase] =
     useState<AnimationPhase>("idle");
+
   const transitionTimer = useRef<number | null>(null);
 
   const testimonials = testimonialData[activeCategory];
@@ -77,7 +83,9 @@ export default function Testimonials() {
   const visibleTestimonials = Array.from(
     { length: 3 },
     (_, index) =>
-      testimonials[(currentIndex + index) % testimonials.length],
+      testimonials[
+        (currentIndex + index) % testimonials.length
+      ],
   );
 
   useEffect(() => {
@@ -92,7 +100,9 @@ export default function Testimonials() {
     updateTestimonials: () => void,
     slideDirection: SlideDirection,
   ) => {
-    if (animationPhase !== "idle") return;
+    if (animationPhase !== "idle") {
+      return;
+    }
 
     setDirection(slideDirection);
     setAnimationPhase("exit");
@@ -105,6 +115,8 @@ export default function Testimonials() {
 
   const handlePrevious = () => {
     runTransition(() => {
+      setSelectedTestimonial(null);
+
       setCurrentIndex((previousIndex) =>
         previousIndex === 0
           ? testimonials.length - 1
@@ -115,6 +127,8 @@ export default function Testimonials() {
 
   const handleNext = () => {
     runTransition(() => {
+      setSelectedTestimonial(null);
+
       setCurrentIndex(
         (previousIndex) =>
           (previousIndex + 1) % testimonials.length,
@@ -122,14 +136,48 @@ export default function Testimonials() {
     }, "next");
   };
 
+  const handleCardSelect = (
+    position: number,
+    testimonialName: string,
+  ) => {
+    if (animationPhase !== "idle") {
+      return;
+    }
+
+    if (position === 1) {
+      setSelectedTestimonial(testimonialName);
+      return;
+    }
+
+    const slideDirection: SlideDirection =
+      position === 0 ? "previous" : "next";
+
+    runTransition(() => {
+      setCurrentIndex((previousIndex) => {
+        const change = position - 1;
+
+        return (
+          previousIndex +
+          change +
+          testimonials.length
+        ) % testimonials.length;
+      });
+
+      setSelectedTestimonial(testimonialName);
+    }, slideDirection);
+  };
+
   const handleCategoryChange = (
     category: TestimonialCategory,
   ) => {
-    if (category === activeCategory) return;
+    if (category === activeCategory) {
+      return;
+    }
 
     runTransition(() => {
       setActiveCategory(category);
       setCurrentIndex(0);
+      setSelectedTestimonial(null);
     }, "next");
   };
 
@@ -209,10 +257,7 @@ export default function Testimonials() {
             onClick={handlePrevious}
             aria-label="Show previous testimonial"
           >
-            <svg
-              viewBox="0 0 28 28"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 28 28" aria-hidden="true">
               <path d="M17 20L11 14L17 8" />
             </svg>
           </button>
@@ -245,39 +290,73 @@ export default function Testimonials() {
               onAnimationEnd={handleAnimationEnd}
             >
               {visibleTestimonials.map(
-                (testimonial, index) => (
-                  <article
-                    className={`${styles.card} ${
-                      index === 1 ? styles.centerCard : ""
-                    } ${
-                      index === 0 ? styles.mobileCard : ""
-                    }`}
-                    key={`${activeCategory}-${currentIndex}-${testimonial.name}`}
-                  >
-                    <div className={styles.quoteRow}>
-                      <span className={styles.line} />
-                      <QuoteIcon />
-                      <span className={styles.line} />
-                    </div>
+                (testimonial, index) => {
+                  const isCenterCard = index === 1;
 
-                    <p className={styles.cardText}>
-                      {testimonial.text}
-                    </p>
+                  const isSelected =
+                    selectedTestimonial === testimonial.name;
 
-                    <div className={styles.customerIdentity}>
-                      <span
-                        className={styles.avatar}
-                        aria-hidden="true"
-                      >
-                        {getInitials(testimonial.name)}
-                      </span>
+                  return (
+                    <article
+                      className={`${styles.card} ${
+                        isCenterCard
+                          ? styles.mobileCard
+                          : ""
+                      } ${
+                        isSelected
+                          ? styles.selectedCard
+                          : ""
+                      }`}
+                      key={`${activeCategory}-${currentIndex}-${testimonial.name}`}
+                      onClick={() =>
+                        handleCardSelect(
+                          index,
+                          testimonial.name,
+                        )
+                      }
+                      onKeyDown={(event) => {
+                        if (
+                          event.key === "Enter" ||
+                          event.key === " "
+                        ) {
+                          event.preventDefault();
 
-                      <span className={styles.customerName}>
-                        {testimonial.name}
-                      </span>
-                    </div>
-                  </article>
-                ),
+                          handleCardSelect(
+                            index,
+                            testimonial.name,
+                          );
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={isSelected}
+                      aria-label={`Select testimonial from ${testimonial.name}`}
+                    >
+                      <div className={styles.quoteRow}>
+                        <span className={styles.line} />
+                        <QuoteIcon />
+                        <span className={styles.line} />
+                      </div>
+
+                      <p className={styles.cardText}>
+                        {testimonial.text}
+                      </p>
+
+                      <div className={styles.customerIdentity}>
+                        <span
+                          className={styles.avatar}
+                          aria-hidden="true"
+                        >
+                          {getInitials(testimonial.name)}
+                        </span>
+
+                        <span className={styles.customerName}>
+                          {testimonial.name}
+                        </span>
+                      </div>
+                    </article>
+                  );
+                },
               )}
             </div>
           </div>
@@ -288,10 +367,7 @@ export default function Testimonials() {
             onClick={handleNext}
             aria-label="Show next testimonial"
           >
-            <svg
-              viewBox="0 0 28 28"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 28 28" aria-hidden="true">
               <path d="M11 8L17 14L11 20" />
             </svg>
           </button>

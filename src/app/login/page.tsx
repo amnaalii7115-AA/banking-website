@@ -1,7 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LoginForm from "@/components/sections/login/LoginForm";
-import Testimonials from "@/components/sections/home/Testimonials";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function LoginPage() {
     <main>
       <Navbar />
       <LoginForm />
-      <Testimonials />
       <Footer />
     </main>
   );

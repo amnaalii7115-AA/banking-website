@@ -57,7 +57,7 @@ const businessProducts: Product[] = [
 
 export default function Products() {
   const [selectedTab, setSelectedTab] =
-    useState<ProductType | null>(null);
+    useState<ProductType>("individuals");
 
   const products =
     selectedTab === "businesses"

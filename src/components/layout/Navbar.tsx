@@ -16,7 +16,7 @@ const navigationLinks = [
   { label: "Careers", href: "/careers" },
   { label: "About", href: "/about" },
   { label: "Security", href: "/security" },
-    { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -43,7 +43,7 @@ export default function Navbar() {
   const isSignUpPage = pathname === "/signup";
 
   useEffect(() => {
-    closeMenu();
+    setIsMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Navbar() {
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeMenu();
+        setIsMenuOpen(false);
       }
     };
 
@@ -68,7 +68,8 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  return (
+return (
+  <div className={styles.stickyNavbar}>
     <Container>
       <div className={styles.navbarArea}>
         <Image
@@ -92,7 +93,22 @@ export default function Navbar() {
             aria-label="Main navigation"
           >
             <div className={styles.mobileMenuHeader}>
-              <span>Menu</span>
+              <Link
+                href="/"
+                className={styles.mobileDrawerLogo}
+                onClick={closeMenu}
+                aria-label="Go to YourBank home page"
+              >
+                <Image
+                  src="/images/icon.png"
+                  alt=""
+                  width={34}
+                  height={34}
+                  className={styles.mobileDrawerLogoIcon}
+                />
+
+                <span>YourBank</span>
+              </Link>
 
               <button
                 type="button"
@@ -203,7 +219,9 @@ export default function Navbar() {
           aria-label="Close navigation menu"
           tabIndex={isMenuOpen ? 0 : -1}
         />
-      </div>
+           </div>
     </Container>
-  );
+  </div>
+);
+
 }

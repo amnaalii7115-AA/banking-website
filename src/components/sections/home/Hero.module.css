@@ -854,27 +854,7 @@
   border-radius: 37.88px;
 }
 
-/* Individual currency icons */
 
-.currencyIcons span {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-
-  width: 27.62px;
-  height: 27.47px;
-
-  background-color: #1c1c1c;
-  color: var(--accent-color);
-
-  border-radius: 50%;
-
-  font-family: inherit;
-  font-size: 12.4px;
-  font-weight: 600;
-  line-height: 1;
-}
 
 /* Light theme */
 
@@ -1122,5 +1102,973 @@
   .openAccountButton {
     width: 100%;
     max-width: 220px;
+  }
+}
+/* =========================
+   LIVE CURRENCY SELECTION
+========================= */
+
+/* Bottom supported currency buttons */
+
+.currencyButton {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  width: 27.62px;
+  height: 27.47px;
+  padding: 0;
+
+  background-color: #1c1c1c;
+  color: var(--accent-color);
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+  touch-action: manipulation;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.currencyButton:hover {
+  background-color: rgb(202 255 51 / 12%);
+  color: var(--accent-color);
+
+  border-color: rgb(202 255 51 / 35%);
+
+  transform: translateY(-2px);
+}
+
+.currencyButton:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.currencyButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Selected bottom currency */
+
+.activeCurrencyButton,
+.activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+
+  box-shadow: 0 0 12px rgb(202 255 51 / 22%);
+
+  transform: none;
+}
+
+/* =========================
+   UPPER CURRENCY IMAGES
+========================= */
+
+/*
+  EUR, Bitcoin aur Ethereum ki upper images
+  INR aur USD flags ke bilkul same size mein.
+*/
+
+.currencyImageWrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 27.62px;
+
+  width: 27.62px;
+  height: 27.47px;
+
+  background-color: var(--background-card);
+
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.currencyImage {
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+
+/* Disabled exchange button */
+
+.exchangeButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+  box-shadow: none;
+
+  transform: none;
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+:global([data-theme="light"]) .currencyButton {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"])
+  .activeCurrencyButton,
+:global([data-theme="light"])
+  .activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+}
+
+:global([data-theme="light"])
+  .currencyImageWrapper {
+  background-color: var(--background-card);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+  .currencyButton {
+    width: 31px;
+    height: 31px;
+
+    font-size: 13px;
+  }
+
+.currencyImageWrapper {
+  width: 27.62px;
+  height: 27.47px;
+}
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .currencyButton {
+    transition: none;
+  }
+}
+/* =========================
+   COMPLETE CURRENCY CONVERTER
+========================= */
+
+.currencyImageWrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 27.62px;
+
+  width: 27.62px;
+  height: 27.47px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.currencyImage {
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+
+.currencySelect {
+  width: 70px;
+  min-width: 0;
+  height: 28px;
+  padding: 0 18px 0 2px;
+
+  appearance: auto;
+
+  background-color: transparent;
+  color: var(--text-primary);
+
+  border: 0;
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.currencySelect option {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+}
+
+.currencyAmountInput {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 62.32px;
+  padding: 20.66px 13.77px;
+
+  background-color: transparent;
+  color: var(--text-primary);
+
+  border: 0;
+  border-top: 0.69px solid var(--border-color);
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 13.77px;
+  font-weight: 500;
+  line-height: 20.66px;
+}
+
+.currencyAmountInput:focus {
+  background-color: rgb(202 255 51 / 4%);
+
+  box-shadow: inset 0 0 0 1px
+    rgb(202 255 51 / 25%);
+}
+
+.currencyAmountInput::-webkit-inner-spin-button,
+.currencyAmountInput::-webkit-outer-spin-button {
+  margin: 0;
+
+  appearance: none;
+}
+
+.currencyAmountInput {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.currencyButton {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  width: 27.62px;
+  height: 27.47px;
+  padding: 0;
+
+  background-color: #1c1c1c;
+  color: var(--accent-color);
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.currencyButton:hover {
+  background-color: rgb(202 255 51 / 12%);
+  border-color: rgb(202 255 51 / 35%);
+
+  transform: translateY(-2px);
+}
+
+.currencyButton:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.currencyButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.activeCurrencyButton,
+.activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+
+  box-shadow: 0 0 12px rgb(202 255 51 / 22%);
+
+  transform: none;
+}
+
+.exchangeButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+  box-shadow: none;
+
+  transform: none;
+}
+
+:global([data-theme="light"])
+  .currencyButton {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"])
+  .activeCurrencyButton,
+:global([data-theme="light"])
+  .activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+}
+
+@media (max-width: 520px) {
+  .currencySelect {
+    width: 60px;
+    padding-right: 12px;
+
+    font-size: 11px;
+  }
+
+  .currencyButton {
+    width: 31px;
+    height: 31px;
+  }
+}
+/* =========================
+   SEARCHABLE CURRENCY CONVERTER
+========================= */
+
+.currencyImageWrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 27.62px;
+
+  width: 27.62px;
+  height: 27.47px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.currencyImage {
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+
+.genericCurrencyBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  overflow: hidden;
+
+  background-color: var(--income-background);
+  color: var(--accent-color);
+
+  border: 1px solid rgb(202 255 51 / 35%);
+  border-radius: 50%;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+:global([data-theme="light"])
+  .genericCurrencyBadge {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+
+  border-color: var(--accent-color);
+}
+
+@media (max-width: 520px) {
+  .genericCurrencyBadge {
+    flex-basis: 30px;
+
+    width: 30px;
+    height: 30px;
+
+    font-size: 9px;
+  }
+}
+
+.currencySearchInput {
+  width: 82px;
+  min-width: 0;
+  height: 28px;
+  padding: 0 4px;
+
+  background-color: transparent;
+  color: var(--text-primary);
+
+  border: 0;
+  border-bottom: 1px solid transparent;
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.currencySearchInput:hover,
+.currencySearchInput:focus {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.currencySearchInput::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.currencyAmountInput {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 62.32px;
+  padding: 20.66px 13.77px;
+
+  background-color: transparent;
+  color: var(--text-primary);
+
+  border: 0;
+  border-top: 0.69px solid var(--border-color);
+  outline: 0;
+
+  font-family: inherit;
+  font-size: 13.77px;
+  font-weight: 500;
+  line-height: 20.66px;
+}
+
+.currencyAmountInput:focus {
+  background-color: rgb(202 255 51 / 4%);
+
+  box-shadow: inset 0 0 0 1px
+    rgb(202 255 51 / 25%);
+}
+
+.currencyAmountInput::-webkit-inner-spin-button,
+.currencyAmountInput::-webkit-outer-spin-button {
+  margin: 0;
+
+  appearance: none;
+}
+
+.currencyAmountInput {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.currencySelectionError {
+  display: block;
+
+  min-height: 14px;
+  margin-top: -16px;
+
+  color: #ff6b6b;
+
+  font-size: 8px;
+  line-height: 12px;
+  text-align: center;
+}
+
+.currencyButton {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  width: 27.62px;
+  height: 27.47px;
+  padding: 0;
+
+  background-color: #1c1c1c;
+  color: var(--accent-color);
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  font-family: inherit;
+  font-size: 12.4px;
+  font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.currencyButton:hover {
+  background-color: rgb(202 255 51 / 12%);
+  border-color: rgb(202 255 51 / 35%);
+
+  transform: translateY(-2px);
+}
+
+.currencyButton:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.currencyButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.activeCurrencyButton,
+.activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+
+  box-shadow: 0 0 12px rgb(202 255 51 / 22%);
+
+  transform: none;
+}
+
+.exchangeButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+  box-shadow: none;
+
+  transform: none;
+}
+
+:global([data-theme="light"])
+  .genericCurrencyBadge {
+  background-color: var(--background-card);
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"])
+  .currencyButton {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"])
+  .activeCurrencyButton,
+:global([data-theme="light"])
+  .activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+}
+
+@media (max-width: 520px) {
+  .currencySearchInput {
+    width: 65px;
+
+    font-size: 10px;
+  }
+
+  .currencyButton {
+    width: 31px;
+    height: 31px;
+  }
+}
+/* =========================
+   FINAL MOBILE HERO FIX
+========================= */
+
+@media (max-width: 600px) {
+  .hero {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 38px 16px 115px;
+
+    overflow-x: hidden;
+  }
+
+  .heroInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 52px;
+
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  /* Hero text */
+
+  .heroContent {
+    width: 100%;
+    max-width: 100%;
+
+    text-align: center;
+  }
+
+  .badge {
+    max-width: 100%;
+    margin-bottom: 16px;
+
+    font-size: 10px;
+  }
+
+  .title {
+    width: 100%;
+
+    font-size: clamp(28px, 8vw, 32px);
+    line-height: 1.25;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 390px;
+    margin: 14px auto 0;
+
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .openAccountButton {
+    min-width: 135px;
+    min-height: 47px;
+    margin-top: 25px;
+  }
+
+  /* Banking area */
+
+  .bankingArea {
+    width: 100%;
+    max-width: 390px;
+    height: auto;
+    min-height: 515px;
+    margin: 0 auto;
+  }
+
+  .bankingCard {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 515px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+  }
+
+  .cardContent {
+    width: 100%;
+    height: auto;
+    min-height: 515px;
+    gap: 18px;
+
+    padding: 20px 16px;
+  }
+
+  /* Monthly income */
+
+  .income {
+    top: -30px;
+    left: 8px;
+
+    width: 145px;
+    height: 58px;
+    padding: 10px 12px;
+  }
+
+  .incomeIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Transactions */
+
+  .transactionsSection {
+    width: 100%;
+    max-width: 100%;
+    height: 180px;
+  }
+
+  .transactions {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .transaction {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 13px;
+  }
+
+  .transactionSecond {
+    width: calc(100% - 22px);
+    max-width: calc(100% - 22px);
+  }
+
+  .transactionThird {
+    width: calc(100% - 44px);
+    max-width: calc(100% - 44px);
+  }
+
+  /* Exchange */
+
+  .exchangeSection {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 244px;
+    gap: 17px;
+  }
+
+  .exchangeGrid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .currency {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .currencyInformation {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 10px;
+  }
+
+  .currencyHeading {
+    gap: 6px;
+
+    min-width: 0;
+  }
+
+  .country {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 9px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .currencyAmount,
+  .currencyAmountInput {
+    width: 100%;
+    min-width: 0;
+    padding: 18px 10px;
+
+    font-size: 12px;
+  }
+
+  .currencySearchInput {
+    width: 58px;
+    min-width: 0;
+    padding-inline: 2px;
+
+    font-size: 10px;
+  }
+
+  .genericCurrencyBadge,
+  .flag {
+    flex: 0 0 28px;
+
+    width: 28px;
+    height: 28px;
+  }
+
+  .genericCurrencyBadge {
+    font-size: 8px;
+  }
+
+  .exchangeButton {
+    width: 100%;
+    min-height: 40px;
+
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .currencySelectionError {
+    margin-top: -12px;
+
+    font-size: 8px;
+  }
+
+  /* Background arrows */
+
+  .arrows {
+    top: -28px;
+    right: -20px;
+
+    width: 210px;
+    height: auto;
+  }
+
+  /* Supported currencies centered */
+
+  .supportedCurrencies {
+    right: auto;
+    bottom: -72px;
+    left: 50%;
+
+    width: min(295px, calc(100% - 16px));
+    max-width: calc(100% - 16px);
+    height: 54px;
+
+    translate: -50% 0;
+  }
+
+  .supportedLabel {
+    font-size: 9px;
+  }
+
+  .currencyIcons {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  .currencyButton {
+    width: 29px;
+    height: 29px;
+  }
+}
+
+/* Smaller phones */
+
+@media (max-width: 380px) {
+  .hero {
+    padding-inline: 12px;
+  }
+
+  .heroInner {
+    gap: 48px;
+  }
+
+  .bankingArea {
+    max-width: 100%;
+  }
+
+  .cardContent {
+    padding-inline: 13px;
+  }
+
+  .transaction {
+    grid-template-columns:
+      31px
+      minmax(0, 1fr)
+      auto;
+
+    padding-inline: 10px;
+  }
+
+  .transactionIcon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .currencyInformation {
+    padding-inline: 8px;
+  }
+
+  .currencySearchInput {
+    width: 48px;
+
+    font-size: 9px;
+  }
+
+  .genericCurrencyBadge,
+  .flag {
+    flex-basis: 25px;
+
+    width: 25px;
+    height: 25px;
+  }
+
+  .supportedCurrencies {
+    width: calc(100% - 8px);
+    max-width: calc(100% - 8px);
+    padding-left: 12px;
+  }
+
+  .supportedLabel {
+    font-size: 8px;
+  }
+
+  .currencyIcons {
+    width: 132px;
+    min-width: 132px;
+    gap: 4px;
+  }
+
+  .currencyButton {
+    width: 27px;
+    height: 27px;
   }
 }

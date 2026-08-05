@@ -113,21 +113,31 @@ export default function Features() {
           className={styles.categoryPanel}
           aria-label="Feature categories"
         >
-          {categories.map((category) => (
-            <button
-              type="button"
-              key={category}
-              className={styles.categoryButton}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+          {categories.map((category) => {
+            const isActive = activeCategory === category;
+
+            return (
+              <button
+                type="button"
+                key={category}
+                className={`${styles.categoryButton} ${
+                  isActive ? styles.activeCategory : ""
+                }`}
+                onClick={() => setActiveCategory(category)}
+                aria-pressed={isActive}
+              >
+                {category}
+              </button>
+            );
+          })}
         </aside>
 
         <div className={styles.featureGrid}>
           {features[activeCategory].map((feature) => (
-            <article className={styles.featureCard} key={feature.title}>
+            <article
+              className={styles.featureCard}
+              key={feature.title}
+            >
               <div className={styles.cardHeader}>
                 <h3>{feature.title}</h3>
 

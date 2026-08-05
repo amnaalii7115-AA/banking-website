@@ -204,3 +204,25 @@
     padding-inline: 10px;
   }
 }
+/* Selected category */
+
+.categoryButton.activeCategory {
+  background-color: rgb(202 255 51 / 12%);
+  color: var(--accent-color);
+  border-color: rgb(202 255 51 / 45%);
+}
+
+.categoryButton.activeCategory:hover {
+  background-color: rgb(202 255 51 / 16%);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Light theme selected category */
+
+:global([data-theme="light"])
+  .categoryButton.activeCategory {
+  background-color: rgb(157 204 25 / 16%);
+  color: #597a00;
+  border-color: var(--accent-color);
+}

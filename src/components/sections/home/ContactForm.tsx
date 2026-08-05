@@ -15,6 +15,67 @@ type SubmitState =
   | "success"
   | "error";
 
+type LocationDetails = {
+  permission: string;
+  latitude: number | null;
+  longitude: number | null;
+};
+
+const getLocation = (
+  locationConsent: boolean,
+): Promise<LocationDetails> => {
+  if (!locationConsent) {
+    return Promise.resolve({
+      permission: "Not requested",
+      latitude: null,
+      longitude: null,
+    });
+  }
+
+  if (!navigator.geolocation) {
+    return Promise.resolve({
+      permission: "Not supported",
+      latitude: null,
+      longitude: null,
+    });
+  }
+
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          permission: "Granted",
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        const errorMessages: Record<
+          number,
+          string
+        > = {
+          1: "Permission denied",
+          2: "Location unavailable",
+          3: "Location request timed out",
+        };
+
+        resolve({
+          permission:
+            errorMessages[error.code] ??
+            "Location unavailable",
+          latitude: null,
+          longitude: null,
+        });
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 7000,
+        maximumAge: 300000,
+      },
+    );
+  });
+};
+
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -47,17 +108,31 @@ export default function ContactForm() {
     setSubmitState("submitting");
     setResponseMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(
+      event.currentTarget,
+    );
 
-    const contactData = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message"),
-      botcheck: formData.get("botcheck"),
-    };
+    const locationConsent =
+      formData.get("locationConsent") === "on";
 
     try {
+      const location =
+        await getLocation(locationConsent);
+
+      const contactData = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject: formData.get("subject"),
+        message: formData.get("message"),
+        botcheck: formData.get("botcheck"),
+
+        privacyConsent:
+          formData.get("privacyConsent") ===
+          "on",
+
+        location,
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
 
@@ -74,7 +149,8 @@ export default function ContactForm() {
 
       if (!response.ok) {
         throw new Error(
-          result.message || "Message could not be sent.",
+          result.message ||
+            "Message could not be sent.",
         );
       }
 
@@ -184,7 +260,35 @@ export default function ContactForm() {
             />
           </label>
 
-          {/* Hidden spam protection field */}
+          <div className={styles.consentArea}>
+            <label className={styles.consentLabel}>
+              <input
+                type="checkbox"
+                name="privacyConsent"
+                required
+              />
+
+              <span>
+                I agree that basic device and connection
+                details may be included with my message for
+                security and support purposes.
+              </span>
+            </label>
+
+            <label className={styles.consentLabel}>
+              <input
+                type="checkbox"
+                name="locationConsent"
+              />
+
+              <span>
+                Share my precise location with this message
+                (optional).
+              </span>
+            </label>
+          </div>
+
+          {/* Spam protection */}
 
           <label className={styles.honeypot}>
             <span>Leave this field empty</span>

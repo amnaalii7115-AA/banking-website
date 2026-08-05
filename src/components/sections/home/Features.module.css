@@ -107,9 +107,10 @@
     transform 0.25s ease;
 }
 
-/* Green only on hover */
+/* Hover and selected category */
 
-.categoryButton:hover {
+.categoryButton:hover,
+.activeCategory {
   color: var(--accent-color);
   background-color: rgb(202 255 51 / 4%);
   border-color: rgb(202 255 51 / 35%);
@@ -262,7 +263,8 @@
   background-color: var(--background-card);
 }
 
-:global([data-theme="light"]) .categoryButton:hover {
+:global([data-theme="light"]) .categoryButton:hover,
+:global([data-theme="light"]) .activeCategory {
   color: var(--accent-color);
   background-color: rgb(157 204 25 / 10%);
   border-color: var(--accent-color);
@@ -325,7 +327,8 @@
     min-width: max-content;
   }
 
-  .categoryButton:hover {
+  .categoryButton:hover,
+  .activeCategory {
     transform: translateY(-2px);
   }
 }
@@ -340,44 +343,6 @@
     padding: 50px 16px;
   }
 
-  .sectionHeader h2 {
-    font-size: 30px;
-  }
-
-  .sectionHeader p {
-    font-size: 14px;
-  }
-
-  .featureGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .featureCard {
-    min-height: auto;
-    gap: 20px;
-    padding: 24px;
-  }
-
-  .cardHeader h3 {
-    font-size: 18px;
-  }
-
-  .featureCard p {
-    font-size: 14px;
-  }
-
-  .arrowButton {
-    width: 32px;
-    height: 32px;
-
-    font-size: 29px;
-  }
-}
-/* =========================
-   MOBILE HEADER ALIGNMENT
-========================= */
-
-@media (max-width: 600px) {
   .sectionHeader {
     display: flex;
     flex-direction: column;
@@ -406,5 +371,30 @@
     font-size: 14px;
     line-height: 21px;
     text-align: center;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    min-height: auto;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .cardHeader h3 {
+    font-size: 18px;
+  }
+
+  .featureCard p {
+    font-size: 14px;
+  }
+
+  .arrowButton {
+    width: 32px;
+    height: 32px;
+
+    font-size: 29px;
   }
 }
