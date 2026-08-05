@@ -18,27 +18,27 @@ export default function Home() {
 
       <Hero />
 
-      <Reveal>
+      <Reveal direction="up">
         <Products />
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="left">
         <UseCases />
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="right">
         <Features />
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="up">
         <FAQ />
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="left">
         <Testimonials />
       </Reveal>
 
-      <Reveal>
+      <Reveal direction="up">
         <CTA />
       </Reveal>
 

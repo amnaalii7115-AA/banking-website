@@ -1,6 +1,12 @@
 "use client";
 
+import {
+  motion,
+  useReducedMotion,
+} from "motion/react";
+
 import { useState } from "react";
+
 import styles from "./BankingCard.module.css";
 
 const transactions = [
@@ -19,6 +25,8 @@ const transactions = [
 ];
 
 export default function BankingCard() {
+  const shouldReduceMotion = useReducedMotion();
+
   const [showResponse, setShowResponse] =
     useState(false);
 
@@ -31,28 +39,119 @@ export default function BankingCard() {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      initial={
+        shouldReduceMotion
+          ? false
+          : {
+              opacity: 0,
+              x: 50,
+              scale: 0.96,
+            }
+      }
+      animate={
+        shouldReduceMotion
+          ? undefined
+          : {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }
+      }
+      transition={{
+        duration: 0.9,
+        delay: 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
       {/* Monthly income */}
 
-      <div className={styles.income}>
-        <span className={styles.incomeIcon}>＋</span>
+      <motion.div
+        className={styles.income}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                y: [0, -8, 0],
+              }
+        }
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <motion.span
+          className={styles.incomeIcon}
+          whileHover={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  rotate: 90,
+                  scale: 1.08,
+                }
+          }
+          transition={{
+            duration: 0.3,
+          }}
+        >
+          ＋
+        </motion.span>
 
         <div className={styles.incomeContent}>
           <strong>+$5000.00</strong>
+
           <span>Monthly Income</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main banking card */}
 
-      <div className={styles.card}>
-        <h2 className={styles.cardHeading}>
+      <motion.div
+        className={styles.card}
+        whileHover={
+          shouldReduceMotion
+            ? undefined
+            : {
+                y: -5,
+                scale: 1.01,
+              }
+        }
+        transition={{
+          duration: 0.3,
+          ease: "easeOut",
+        }}
+      >
+        <motion.h2
+          className={styles.cardHeading}
+          initial={
+            shouldReduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 15,
+                }
+          }
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  opacity: 1,
+                  y: 0,
+                }
+          }
+          transition={{
+            duration: 0.5,
+            delay: 0.45,
+          }}
+        >
           Your Transactions
-        </h2>
+        </motion.h2>
 
         <div className={styles.transactions}>
           {transactions.map((transaction, index) => (
-            <article
+            <motion.article
               key={transaction.name}
               className={`${styles.transaction} ${
                 index === 1
@@ -61,17 +160,58 @@ export default function BankingCard() {
                     ? styles.thirdTransaction
                     : ""
               }`}
+              initial={
+                shouldReduceMotion
+                  ? false
+                  : {
+                      opacity: 0,
+                      x: 30,
+                    }
+              }
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      opacity: 1,
+                      x: 0,
+                    }
+              }
+              transition={{
+                duration: 0.5,
+                delay: 0.55 + index * 0.12,
+                ease: "easeOut",
+              }}
+              whileHover={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      x: 5,
+                      scale: 1.01,
+                    }
+              }
             >
-              <span className={styles.transactionIcon}>
+              <motion.span
+                className={styles.transactionIcon}
+                whileHover={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        rotate: 180,
+                      }
+                }
+                transition={{
+                  duration: 0.35,
+                }}
+              >
                 ↔
-              </span>
+              </motion.span>
 
-              <div className={styles.transactionContent}>
+              <div
+                className={styles.transactionContent}
+              >
                 <span>Transaction</span>
 
-                <strong>
-                  {transaction.name}
-                </strong>
+                <strong>{transaction.name}</strong>
               </div>
 
               <strong
@@ -79,23 +219,77 @@ export default function BankingCard() {
               >
                 {transaction.amount}
               </strong>
-            </article>
+            </motion.article>
           ))}
         </div>
 
         {/* Money exchange */}
 
-        <h2 className={styles.exchangeHeading}>
+        <motion.h2
+          className={styles.exchangeHeading}
+          initial={
+            shouldReduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 15,
+                }
+          }
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  opacity: 1,
+                  y: 0,
+                }
+          }
+          transition={{
+            duration: 0.5,
+            delay: 0.9,
+          }}
+        >
           Money Exchange
-        </h2>
+        </motion.h2>
 
-        <div className={styles.exchangeGrid}>
-          <div className={styles.currencyCard}>
+        <motion.div
+          className={styles.exchangeGrid}
+          initial={
+            shouldReduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 20,
+                }
+          }
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  opacity: 1,
+                  y: 0,
+                }
+          }
+          transition={{
+            duration: 0.6,
+            delay: 1,
+            ease: "easeOut",
+          }}
+        >
+          <motion.div
+            className={styles.currencyCard}
+            whileHover={
+              shouldReduceMotion
+                ? undefined
+                : {
+                    y: -3,
+                  }
+            }
+          >
             <div className={styles.currencyName}>
               <span
                 className={`${styles.flag} ${styles.indiaFlag}`}
                 aria-label="India"
-              ></span>
+              />
 
               <strong>INR</strong>
             </div>
@@ -107,14 +301,23 @@ export default function BankingCard() {
             <strong className={styles.exchangeAmount}>
               5,000
             </strong>
-          </div>
+          </motion.div>
 
-          <div className={styles.currencyCard}>
+          <motion.div
+            className={styles.currencyCard}
+            whileHover={
+              shouldReduceMotion
+                ? undefined
+                : {
+                    y: -3,
+                  }
+            }
+          >
             <div className={styles.currencyName}>
               <span
                 className={`${styles.flag} ${styles.usaFlag}`}
                 aria-label="United States"
-              ></span>
+              />
 
               <strong>USD</strong>
             </div>
@@ -126,38 +329,122 @@ export default function BankingCard() {
             <strong className={styles.exchangeAmount}>
               12.00
             </strong>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <button
+        <motion.button
           type="button"
           className={styles.exchangeButton}
           onClick={handleExchange}
+          whileHover={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  y: -2,
+                  scale: 1.02,
+                }
+          }
+          whileTap={
+            shouldReduceMotion
+              ? undefined
+              : {
+                  scale: 0.97,
+                }
+          }
+          transition={{
+            duration: 0.2,
+          }}
         >
           Exchange
-        </button>
+        </motion.button>
 
         {showResponse && (
-          <p className={styles.response} role="status">
+          <motion.p
+            className={styles.response}
+            role="status"
+            initial={
+              shouldReduceMotion
+                ? false
+                : {
+                    opacity: 0,
+                    y: -8,
+                  }
+            }
+            animate={
+              shouldReduceMotion
+                ? undefined
+                : {
+                    opacity: 1,
+                    y: 0,
+                  }
+            }
+            exit={{
+              opacity: 0,
+              y: -8,
+            }}
+            transition={{
+              duration: 0.3,
+            }}
+          >
             ✓ Exchange request submitted
-          </p>
+          </motion.p>
         )}
-      </div>
+      </motion.div>
 
       {/* Supported currencies */}
 
-      <div className={styles.supported}>
+      <motion.div
+        className={styles.supported}
+        initial={
+          shouldReduceMotion
+            ? false
+            : {
+                opacity: 0,
+                y: 20,
+              }
+        }
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                opacity: 1,
+                y: 0,
+              }
+        }
+        transition={{
+          duration: 0.6,
+          delay: 1.1,
+        }}
+      >
         <span className={styles.supportedLabel}>
           Supported Currency
         </span>
 
         <div className={styles.currencyList}>
-          <span className={styles.currencyIcon}>$</span>
-          <span className={styles.currencyIcon}>€</span>
-          <span className={styles.currencyIcon}>₿</span>
-          <span className={styles.currencyIcon}>♦</span>
+          {["$", "€", "₿", "♦"].map(
+            (currency, index) => (
+              <motion.span
+                key={currency}
+                className={styles.currencyIcon}
+                whileHover={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        y: -4,
+                        scale: 1.15,
+                      }
+                }
+                transition={{
+                  duration: 0.2,
+                  delay: index * 0.02,
+                }}
+              >
+                {currency}
+              </motion.span>
+            ),
+          )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
