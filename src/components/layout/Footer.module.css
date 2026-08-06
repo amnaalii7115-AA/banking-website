@@ -454,11 +454,6 @@
     padding: 45px 20px 25px;
   }
 
-  /*
-    Mobile par nested containers remove karke
-    unke elements ko footer grid ka part banaya hai.
-  */
-
   .topContainer,
   .bottomContainer {
     display: contents;
@@ -467,12 +462,12 @@
   .footerContent {
     display: grid;
     grid-template-columns:
-      minmax(0, 1.25fr)
-      minmax(100px, 0.75fr);
+      minmax(100px, 0.75fr)
+      minmax(0, 1.25fr);
     grid-template-areas:
       "logo logo"
       "social social"
-      "contact navigation"
+      "navigation contact"
       "copyright copyright"
       "legal legal";
     gap: 0 28px;
@@ -542,7 +537,65 @@
     height: 19px;
   }
 
-  /* Contact column */
+  /* Navigation column — left side */
+
+  .navigation {
+    grid-area: navigation;
+
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 0 4px;
+
+    overflow: visible;
+  }
+
+  .navigation::before {
+    content: "Navigate";
+
+    display: block;
+    margin-bottom: 3px;
+
+    color: var(--text-primary);
+
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .navigation a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: auto !important;
+    min-width: 0;
+    min-height: auto;
+    padding: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .navigation a:hover {
+    color: var(--accent-color);
+  }
+
+  .navigation a::after {
+    display: none;
+  }
+
+  /* Contact column — right side */
 
   .contactContainer {
     grid-area: contact;
@@ -555,6 +608,7 @@
     width: 100%;
     min-width: 0;
     margin: 0;
+    padding-left: 8px;
   }
 
   .contactContainer::before {
@@ -599,64 +653,6 @@
 
     overflow-wrap: anywhere;
     word-break: break-word;
-  }
-
-  /* Navigation column */
-
-  .navigation {
-    grid-area: navigation;
-
-    display: flex !important;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 10px;
-
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-
-    overflow: visible;
-  }
-
-  .navigation::before {
-    content: "Navigate";
-
-    display: block;
-    margin-bottom: 3px;
-
-    color: var(--text-primary);
-
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  .navigation a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    width: auto !important;
-    min-width: 0;
-    min-height: auto;
-    padding: 0;
-
-    color: var(--text-secondary);
-
-    font-size: 12px;
-    line-height: 1.5;
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  .navigation a:hover {
-    color: var(--accent-color);
-  }
-
-  .navigation a::after {
-    display: none;
   }
 
   /* Copyright */
@@ -704,7 +700,9 @@
   }
 }
 
-/* Very small mobile */
+/* =========================
+   VERY SMALL MOBILE
+========================= */
 
 @media (max-width: 380px) {
   .footer {
@@ -713,8 +711,8 @@
 
   .footerContent {
     grid-template-columns:
-      minmax(0, 1.2fr)
-      minmax(88px, 0.8fr);
+      minmax(88px, 0.8fr)
+      minmax(0, 1.2fr);
     gap: 0 18px;
   }
 
@@ -731,6 +729,14 @@
   .socialButton {
     width: 36px;
     height: 36px;
+  }
+
+  .navigation {
+    padding-left: 2px;
+  }
+
+  .contactContainer {
+    padding-left: 4px;
   }
 
   .contactContainer::before,
@@ -757,7 +763,10 @@
     height: 16px;
   }
 }
-/* Reduced motion */
+
+/* =========================
+   REDUCED MOTION
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
   .footer,
