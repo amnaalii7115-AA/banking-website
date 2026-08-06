@@ -8,6 +8,8 @@
   padding: 0;
 
   background-color: var(--background-primary);
+
+  transition: background-color 0.3s ease;
 }
 
 .navbarArea {
@@ -19,6 +21,7 @@
 
   overflow: visible;
 }
+
 .navPattern {
   position: absolute;
   top: 0;
@@ -66,7 +69,9 @@
 
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+
+  max-width: calc(100% - 420px);
 
   transform: translateX(-50%);
 }
@@ -74,11 +79,19 @@
 .navigationLinks {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 3px;
+
+  width: 100%;
 }
 
 .navLink {
-  padding: 12px 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 11px 13px;
 
   background-color: transparent;
   color: var(--text-primary);
@@ -86,9 +99,10 @@
   border: 1px solid transparent;
   border-radius: 82px;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1;
+  text-align: center;
   text-decoration: none;
   white-space: nowrap;
 
@@ -118,6 +132,7 @@
 .navLinkActive {
   background-color: var(--background-card);
   color: var(--accent-color);
+
   border-color: var(--border-color);
 }
 
@@ -126,7 +141,9 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+
+  margin-left: auto;
 }
 
 .signUp,
@@ -135,9 +152,9 @@
   align-items: center;
   justify-content: center;
 
-  min-width: 87px;
-  height: 49px;
-  padding: 14px 24px;
+  min-width: 78px;
+  height: 45px;
+  padding: 12px 18px;
 
   background-color: #1c1c1c;
   color: #ffffff;
@@ -145,9 +162,9 @@
   border: 1px solid var(--border-color);
   border-radius: 82px;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 20px;
   text-decoration: none;
   white-space: nowrap;
 
@@ -163,6 +180,7 @@
 .loginLink:hover {
   background-color: var(--accent-color);
   color: #191919;
+
   border-color: var(--accent-color);
 
   box-shadow: 0 8px 20px rgb(202 255 51 / 12%);
@@ -180,6 +198,7 @@
 .loginLink.accountLinkActive {
   background-color: var(--accent-color);
   color: #191919;
+
   border-color: var(--accent-color);
 }
 
@@ -188,6 +207,7 @@
 .loginLink.accountLinkActive:hover {
   background-color: var(--accent-color);
   color: #191919;
+
   border-color: var(--accent-color);
 }
 
@@ -204,6 +224,7 @@
 :global([data-theme="light"]) .loginLink {
   background-color: var(--background-secondary);
   color: var(--text-primary);
+
   border-color: var(--border-color);
 }
 
@@ -213,28 +234,66 @@
 :global([data-theme="light"]) .loginLink.accountLinkActive {
   background-color: var(--accent-color);
   color: #191919;
+
   border-color: var(--accent-color);
 }
-/* Mobile and tablet */
 
-@media (max-width: 900px) {
- .navbarArea {
-  position: relative;
-  z-index: 1000;
+/* Medium desktop */
 
-  margin: 0;
-  padding: 0;
+@media (min-width: 1181px) and (max-width: 1320px) {
+  .navbar {
+    padding: 12px 14px 12px 24px;
+  }
+
+  .navigation {
+    max-width: calc(100% - 380px);
+  }
+
+  .navigationLinks {
+    gap: 1px;
+  }
+
+  .navLink {
+    min-height: 42px;
+    padding: 10px 9px;
+
+    font-size: 12px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .signUp,
+  .loginLink {
+    min-width: 68px;
+    height: 42px;
+    padding: 10px 13px;
+
+    font-size: 12px;
+  }
 }
 
-.navPattern {
-  top: 0;
-  left: calc((100vw - 100%) / -2);
+/* Mobile, tablet and compact laptop */
 
-  width: 360px;
-  height: auto;
+@media (max-width: 1180px) {
+  .navbarArea {
+    position: relative;
+    z-index: 1000;
 
-  opacity: 0.8;
-}
+    margin: 0;
+    padding: 0;
+  }
+
+  .navPattern {
+    top: 0;
+    left: calc((100vw - 100%) / -2);
+
+    width: 360px;
+    height: auto;
+
+    opacity: 0.8;
+  }
 
   .navbar {
     position: relative;
@@ -245,8 +304,8 @@
   }
 
   .actions {
-    margin-left: auto;
     margin-right: 10px;
+    margin-left: auto;
   }
 
   .actions .signUp,
@@ -287,6 +346,7 @@
     height: 2px;
 
     background-color: #191919;
+
     border-radius: 5px;
 
     transition:
@@ -356,6 +416,7 @@
     gap: 10px;
 
     width: min(380px, 88vw);
+    max-width: none;
     height: 100vh;
     height: 100dvh;
     padding: 24px 20px;
@@ -445,11 +506,11 @@
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
-
     width: 42px;
     height: 42px;
     padding: 0;
+
+    flex-shrink: 0;
 
     background-color: var(--accent-color);
 
@@ -468,6 +529,7 @@
     height: 2px;
 
     background-color: #191919;
+
     border-radius: 5px;
   }
 
@@ -511,6 +573,7 @@
 
     font-size: 15px;
     line-height: 22px;
+    text-align: left;
     text-decoration: none;
 
     cursor: pointer;
@@ -524,7 +587,10 @@
   .navLinkActive {
     background-color: #222222;
     color: var(--accent-color);
+
     border-color: var(--accent-color);
+
+    outline: none;
 
     transform: none;
   }
@@ -586,6 +652,7 @@
   .mobileLogin.accountLinkActive {
     background-color: var(--accent-color);
     color: #191919;
+
     border-color: var(--accent-color);
   }
 
@@ -600,6 +667,7 @@
 
   :global([data-theme="light"]) .mobileMenuHeader {
     color: #191919;
+
     border-bottom-color: var(--border-color);
   }
 
@@ -625,6 +693,7 @@
     .mobileLogin.accountLinkActive {
     background-color: var(--accent-color);
     color: #191919;
+
     border-color: var(--accent-color);
   }
 }
@@ -633,14 +702,14 @@
 
 @media (max-width: 480px) {
   .navPattern {
-  top: 0;
-  left: calc((100vw - 100%) / -2);
+    top: 0;
+    left: calc((100vw - 100%) / -2);
 
-  width: 270px;
-  height: auto;
+    width: 270px;
+    height: auto;
 
-  opacity: 0.7;
-}
+    opacity: 0.7;
+  }
 
   .navbar {
     min-height: 64px;
@@ -685,12 +754,16 @@
 /* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
+  .stickyNavbar,
+  .navbar,
   .navigation,
   .menuBackdrop,
   .menuButton span,
   .navLink,
   .signUp,
-  .loginLink {
+  .loginLink,
+  .mobileSignUp,
+  .mobileLogin {
     transition: none;
   }
 }
