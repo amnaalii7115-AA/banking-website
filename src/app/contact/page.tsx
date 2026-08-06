@@ -1,7 +1,7 @@
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ContactForm from "@/components/sections/home/ContactForm";
+import ContactForm from "@/components/sections/contact/ContactForm";
 import Reveal from "@/components/ui/Reveal";
 import type { Metadata } from "next";
 
