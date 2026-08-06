@@ -170,3 +170,61 @@ img {
     animation-iteration-count: 1 !important;
   }
 }
+/* =========================================
+   GLOBAL HORIZONTAL SCREEN SHAKE FIX
+========================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body {
+  position: relative;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+main > section {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Prevent flex and grid children from creating overflow */
+
+main div,
+main section,
+main article {
+  min-width: 0;
+}
+
+/* Mobile-specific protection */
+
+@media (max-width: 600px) {
+  html,
+  body,
+  main {
+    width: 100%;
+    max-width: 100vw;
+
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
+  }
+}

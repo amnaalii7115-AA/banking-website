@@ -327,3 +327,60 @@
     font-size: 13px;
   }
 }
+/* =========================================
+   CAREERS HERO IMAGE HOVER EFFECT
+========================================= */
+
+.imageContainer {
+  overflow: hidden;
+}
+
+.heroImage {
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.imageContainer:hover .heroImage {
+  filter: brightness(1.08);
+  transform: scale(1.05);
+}
+
+/* Keyboard accessibility */
+
+.imageContainer:focus-within .heroImage {
+  filter: brightness(1.08);
+  transform: scale(1.05);
+}
+
+/* Mobile par unwanted hover remove */
+
+@media (hover: none) {
+  .imageContainer:hover .heroImage {
+    filter: none;
+    transform: none;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage {
+    transition: none;
+  }
+}
+/* Desktop hover effect */
+
+.imageContainer:hover .heroImage {
+  filter: brightness(1.08);
+  transform: scale(1.05);
+}
+
+/* Mobile touch effect */
+
+@media (hover: none) and (pointer: coarse) {
+  .imageContainer:active .heroImage {
+    filter: brightness(1.04);
+    transform: scale(1.025);
+  }
+}

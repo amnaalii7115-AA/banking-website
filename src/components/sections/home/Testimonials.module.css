@@ -785,3 +785,34 @@
     transition-duration: 0.01ms;
   }
 }
+/* =========================================
+   TESTIMONIAL BLACK OVERLAY FIX
+========================================= */
+
+.cardsTrack {
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+}
+
+/* Tablet aur mobile par side fades remove */
+
+@media (max-width: 900px) {
+  .leftFade,
+  .rightFade {
+    display: none;
+  }
+
+  .cardsContainer {
+    background-color: transparent;
+  }
+
+  .cardText {
+    color: var(--text-primary);
+    opacity: 1;
+  }
+}

@@ -9,55 +9,50 @@
   align-items: center;
   gap: 24px;
 
-  padding-inline: 12px;
+  padding: 28px 24px;
 
+  background-color: transparent;
   color: var(--text-primary);
-  text-align: center;
 
-  border: none;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
   outline: none;
+
+  text-align: center;
 
   cursor: pointer;
 
   transition:
     transform 0.3s ease,
     background-color 0.3s ease,
+    border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
+/* Purani divider lines remove */
+
 .card:not(:last-child)::after {
-  content: "";
-
-  position: absolute;
-  top: 0;
-  right: -20px;
-
-  width: 1px;
-  height: 100%;
-
-  background-color: var(--border-color);
-
-  transition: background-color 0.3s ease;
+  display: none;
 }
 
+/* Card hover */
+
 .card:hover {
-  background-color: rgb(202 255 51 / 2%);
-  border-radius: 12px;
+  background-color: rgb(202 255 51 / 3%);
+  border-color: rgb(202 255 51 / 40%);
 
   box-shadow: 0 18px 45px rgb(0 0 0 / 12%);
 
   transform: translateY(-6px);
 }
 
-.card:hover::after {
-  background-color: rgb(202 255 51 / 30%);
+.card:focus-visible {
+  border-color: var(--accent-color);
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
 }
 
-.card:focus-visible {
-  border-radius: 12px;
-  outline: 2px solid var(--accent-color);
-  outline-offset: 5px;
-}
+/* Icon */
 
 .iconContainer {
   display: flex;
@@ -99,10 +94,12 @@
   transform: scale(1.08);
 }
 
+/* Text */
+
 .textContainer {
   display: flex;
-  width: 373.33px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 373.33px;
   flex-direction: column;
   gap: 16px;
 }
@@ -143,6 +140,17 @@
   color: var(--accent-color);
 }
 
+/* Light theme hover */
+
+:global([data-theme="light"]) .card:hover {
+  background-color: rgb(157 204 25 / 8%);
+  border-color: var(--accent-color);
+
+  box-shadow: 0 18px 45px rgb(0 0 0 / 8%);
+}
+
+/* Tablet and mobile */
+
 @media (max-width: 900px) {
   .card {
     width: 100%;
@@ -151,12 +159,7 @@
   }
 
   .card:not(:last-child)::after {
-    top: auto;
-    right: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 1px;
+    display: none;
   }
 
   .textContainer {
