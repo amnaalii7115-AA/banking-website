@@ -3,25 +3,19 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import styles from "./CareersCTA.module.css";
+import { useRouter } from "next/navigation";
 
 export default function CareersCTA() {
+  const router = useRouter();
   const [showResponse, setShowResponse] = useState(false);
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null
   );
 
-  const handleOpenAccount = () => {
-    setShowResponse(true);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setShowResponse(false);
-    }, 3000);
-  };
+const handleOpenAccount = () => {
+  router.push("/open-account");
+};
 
   useEffect(() => {
     return () => {

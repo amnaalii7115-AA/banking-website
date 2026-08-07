@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import {
   useEffect,
   useMemo,
@@ -12,6 +13,7 @@ import {
 } from "motion/react";
 
 import styles from "./Hero.module.css";
+import { useRouter } from "next/navigation";
 
 type ExchangeRates = Record<string, number>;
 
@@ -223,6 +225,8 @@ function CurrencyBadge({
   );
 }
 export default function Hero() {
+  const router = useRouter();
+
   const shouldReduceMotion = useReducedMotion();
 
   const [sourceCurrency, setSourceCurrency] =
@@ -391,11 +395,9 @@ export default function Hero() {
     setExchangeSubmitted(false);
   };
 
-  const handleOpenAccount = () => {
-    window.alert(
-      "Open Account request received!",
-    );
-  };
+ const handleOpenAccount = () => {
+  router.push("/open-account");
+};
 
   const handleExchange = () => {
     if (

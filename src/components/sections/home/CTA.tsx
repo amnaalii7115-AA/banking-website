@@ -2,23 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./CTA.module.css";
+import { useRouter } from "next/navigation";
 
 export default function CTA() {
+  const router = useRouter();
   const [showMessage, setShowMessage] = useState(false);
   const timeoutRef = useRef<number | null>(null);
-
-  const handleOpenAccount = () => {
-    setShowMessage(true);
-
-    if (timeoutRef.current !== null) {
-      window.clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      setShowMessage(false);
-      timeoutRef.current = null;
-    }, 3000);
-  };
+  
+const handleOpenAccount = () => {
+  router.push("/open-account");
+};
 
   useEffect(() => {
     return () => {

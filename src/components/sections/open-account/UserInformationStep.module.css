@@ -1,0 +1,307 @@
+.formCard {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+
+  width: 100%;
+  padding: 45px;
+
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgb(202 255 51 / 7%),
+      transparent 32%
+    ),
+    var(--background-secondary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+
+  text-align: center;
+}
+
+.cardHeader > span {
+  color: var(--accent-color);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cardHeader h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.cardHeader p {
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  width: 100%;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  min-width: 0;
+  margin: 0;
+  padding: 25px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+}
+
+.fieldset legend {
+  padding-inline: 10px;
+
+  color: var(--accent-color);
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  min-width: 0;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px;
+
+  background-color: var(--background-card);
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  outline: none;
+
+  font: inherit;
+  line-height: 1.5;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.field textarea {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+.field select {
+  cursor: pointer;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--accent-color);
+
+  box-shadow: 0 0 0 3px rgb(202 255 51 / 8%);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-secondary);
+
+  opacity: 0.75;
+}
+
+.field select option {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: 100%;
+}
+
+.backButton,
+.continueButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-width: 130px;
+  min-height: 49px;
+  padding: 13px 23px;
+
+  border-radius: 82px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.backButton {
+  background-color: var(--background-card);
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
+}
+
+.backButton:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+
+  transform: translateY(-2px);
+}
+
+.continueButton {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border: 1px solid var(--accent-color);
+}
+
+.continueButton:hover {
+  transform: translateY(-2px);
+}
+
+/* Light theme */
+
+:global([data-theme="light"]) .formCard {
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgb(157 204 25 / 9%),
+      transparent 32%
+    ),
+    var(--background-secondary);
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .formCard {
+    padding: 35px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .formCard {
+    gap: 28px;
+    padding: 28px 20px;
+
+    border-radius: 16px;
+  }
+
+  .cardHeader h2 {
+    font-size: 23px;
+  }
+
+  .fieldset {
+    padding: 20px 16px;
+  }
+
+  .fieldGrid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .backButton,
+  .continueButton {
+    width: 100%;
+  }
+}
+/* Validation help and error messages */
+
+.field small {
+  color: var(--text-secondary);
+
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.validationMessage {
+  width: 100%;
+  margin: 0;
+  padding: 13px 16px;
+
+  background-color: rgb(255 124 124 / 7%);
+  color: #ff8b8b;
+
+  border: 1px solid rgb(255 124 124 / 25%);
+  border-radius: 10px;
+
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}

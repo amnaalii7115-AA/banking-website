@@ -17,14 +17,7 @@ const navigationLinks = [
   { label: "About", href: "/about" },
   { label: "Security", href: "/security" },
   { label: "Contact", href: "/contact" },
-  {
-    label: "Privacy Policy",
-    href: "/privacy-policy",
-  },
-  {
-    label: "Terms",
-    href: "/terms-and-conditions",
-  },
+  
 ];
 
 export default function Navbar() {

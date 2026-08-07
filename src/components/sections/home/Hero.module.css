@@ -2072,3 +2072,198 @@
     height: 27px;
   }
 }
+/* =========================================
+   SMOOTH BANKING CARD THEME TRANSITIONS
+========================================= */
+
+/* Main banking surfaces */
+
+.bankingCard {
+  background-image: none;
+  background-color: var(--background-secondary);
+
+  transition:
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.income,
+.transaction,
+.exchangeGrid,
+.currency,
+.currencyInformation,
+.currencyAmountInput,
+.currencySelect,
+.currencySearchInput,
+.genericCurrencyBadge,
+.currencyImageWrapper,
+.supportedCurrencies,
+.currencyIcons {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    opacity 0.45s ease;
+}
+
+/* Text colours */
+
+.cardHeading,
+.incomeText strong,
+.incomeText span,
+.transactionText span,
+.transactionText strong,
+.transactionAmount,
+.currencyHeading strong,
+.country,
+.currencyAmount,
+.currencyAmountInput,
+.currencySelect,
+.currencySearchInput,
+.supportedLabel {
+  transition:
+    color 0.45s ease,
+    background-color 0.45s ease,
+    border-color 0.45s ease;
+}
+
+/* Accent icons */
+
+.incomeIcon,
+.transactionIcon,
+.checkIcon,
+.genericCurrencyBadge {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    transform 0.25s ease;
+}
+
+/* Exchange button */
+
+.exchangeButton {
+  background-color: var(--income-background);
+
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
+}
+
+/* Supported currency container */
+
+.supportedCurrencies {
+  background-color: var(--income-background);
+}
+
+.supportedLabel {
+  color: var(--text-primary);
+}
+
+.currencyIcons {
+  background-color: var(--background-secondary);
+  border-color: var(--border-color);
+}
+
+/* Currency buttons */
+
+.currencyButton {
+  background-color: var(--background-secondary);
+  color: var(--accent-color);
+
+  border-color: var(--border-color);
+
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
+}
+
+.activeCurrencyButton,
+.activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+}
+
+/* Currency text now follows theme variables */
+
+.currencyHeading strong,
+.currencyAmount {
+  color: var(--text-primary);
+}
+
+.country {
+  color: var(--text-secondary);
+}
+
+/* Card texture smoothly changes opacity */
+
+.cardTexture {
+  transition:
+    opacity 0.45s ease,
+    filter 0.45s ease;
+}
+
+/* Light theme shadows */
+
+:global([data-theme="light"]) .bankingCard {
+  background-color: var(--background-secondary);
+
+  box-shadow: 0 30px 70px rgb(25 25 25 / 9%);
+}
+
+:global([data-theme="light"]) .transaction,
+:global([data-theme="light"]) .exchangeGrid,
+:global([data-theme="light"]) .currency {
+  background-color: var(--background-card);
+}
+
+:global([data-theme="light"]) .currencyButton {
+  background-color: var(--background-card);
+  color: var(--accent-color);
+
+  border-color: var(--border-color);
+}
+
+:global([data-theme="light"])
+  .activeCurrencyButton,
+:global([data-theme="light"])
+  .activeCurrencyButton:hover {
+  background-color: var(--accent-color);
+  color: #191919;
+
+  border-color: var(--accent-color);
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .bankingCard,
+  .income,
+  .transaction,
+  .exchangeGrid,
+  .currency,
+  .currencyInformation,
+  .currencyAmountInput,
+  .currencySelect,
+  .currencySearchInput,
+  .genericCurrencyBadge,
+  .currencyImageWrapper,
+  .supportedCurrencies,
+  .currencyIcons,
+  .exchangeButton,
+  .currencyButton,
+  .cardTexture {
+    transition: none;
+  }
+}
